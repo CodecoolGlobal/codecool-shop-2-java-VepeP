@@ -42,8 +42,8 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(new Product("Amazon Fire HD 8", new BigDecimal("89"), "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", tablet, amazon));
 
         FileHandler fileHandler = new FileHandler();
-        String s = fileHandler.exportProductDao();
-        File file = fileHandler.getProductFile();
-        fileHandler.saveFile(s, file);
+        fileHandler.saveFile(fileHandler.exportSupplierDao(), fileHandler.getSupplierFile());
+        fileHandler.saveFile(fileHandler.exportProductCategoryDao(), fileHandler.getCategoryFile());
+        fileHandler.saveFile(fileHandler.exportProductDao(), fileHandler.getProductFile());
     }
 }

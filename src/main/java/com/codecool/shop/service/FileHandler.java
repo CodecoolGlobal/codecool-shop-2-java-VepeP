@@ -29,9 +29,16 @@ public class FileHandler {
         }
     }
 
+    public File getSupplierFile(){
+        return new File("src/main/resources/data/suppliers.json");
+    }
+
+    public File getCategoryFile(){
+        return new File("src/main/resources/data/categories.json");
+    }
+
     public File getProductFile(){
-        File file = new File("src/main/resources/data/products.json");
-        return file;
+        return new File("src/main/resources/data/products.json");
     }
 
     public String exportProductDao() {
