@@ -28,10 +28,10 @@ public class Initializer implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        ProductDao productDataStore = ProductDaoMem.getInstance();
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
-        CartDao cartDataStore = CartDaoMem.getInstance();
+//        ProductDao productDataStore = ProductDaoMem.getInstance();
+//        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+//        SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
+//        CartDao cartDataStore = CartDaoMem.getInstance();
         String supplierFilePath = "src/main/resources/data/suppliers.json";
         String categoriesFilePath = "src/main/resources/data/categories.json";
         String productsFilePath = "src/main/resources/data/products.json";
@@ -57,7 +57,16 @@ public class Initializer implements ServletContextListener {
             e.printStackTrace();
         }
 
-        //FileHandler fileHandler = new FileHandler();
+//        Supplier amazon = new Supplier("Amazon", "Digital content and services");
+//        ProductCategory tablet = new ProductCategory("Tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
+//        Product product = new Product("Amazon Fire HD 8", new BigDecimal("89"), "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", tablet, amazon);
+//        Product product2 = new Product("Amazon Fire HD 10", new BigDecimal("89"), "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", tablet, amazon);
+//        CartDao cartDataStore = CartDaoMem.getInstance();
+//        cartDataStore.add(product);
+//        cartDataStore.add(product2);
+
+//        FileHandler fileHandler = new FileHandler();
+//        fileHandler.saveFile(fileHandler.exportCartDao(), fileHandler.getCartFile());
         //fileHandler.saveFile(fileHandler.exportSupplierDao(), fileHandler.getSupplierFile());
         //fileHandler.saveFile(fileHandler.exportProductCategoryDao(), fileHandler.getCategoryFile());
         //fileHandler.saveFile(fileHandler.exportProductDao(), fileHandler.getProductFile());

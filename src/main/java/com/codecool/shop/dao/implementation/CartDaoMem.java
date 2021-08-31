@@ -16,11 +16,12 @@ public class CartDaoMem implements CartDao {
     public static CartDaoMem getInstance() {
         if (instance == null) {
             instance = new CartDaoMem();
+            instance.shoppingCart = new HashMap<>();
         }
         return instance;
     }
 
-    public static void setInstance(CartDaoMem fromJson) {
+    public static void setInstance(CartDaoMem instance) {
         CartDaoMem.instance = instance;
     }
 
@@ -55,13 +56,15 @@ public class CartDaoMem implements CartDao {
         if (quantity != null) shoppingCart.put(product, ++quantity);
     }
 
-    private void decreaseProductQuantity(Product product) {
+    @Override
+    public void decreaseProductQuantity(Product product) {
         Integer quantity = shoppingCart.get(product);
         if (quantity != null && quantity > 2) shoppingCart.put(product, --quantity);
         else if (quantity != null) remove(product.getId());
     }
 
     private boolean checkIfProductInCart(Product product) {
+        if (shoppingCart == null) return false;
         for (Product myProduct : shoppingCart.keySet()) {
             if (myProduct.equals(product)) return true;
         }
