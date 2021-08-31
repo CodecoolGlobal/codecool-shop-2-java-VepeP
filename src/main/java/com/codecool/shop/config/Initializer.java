@@ -25,18 +25,28 @@ public class Initializer implements ServletContextListener {
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
 
         //setting up a new supplier
-        Supplier amazon = new Supplier("Amazon", "Digital content and services");
-        supplierDataStore.add(amazon);
-        Supplier lenovo = new Supplier("Lenovo", "Computers");
-        supplierDataStore.add(lenovo);
+        Supplier codeCool = new Supplier("Code Cool", "Programing School and Headhunter company");
+        supplierDataStore.add(codeCool);
+        Supplier greenFox = new Supplier("Green Fox", "Programing School");
+        supplierDataStore.add(greenFox);
 
         //setting up a new product category
-        ProductCategory tablet = new ProductCategory("Tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
-        productCategoryDataStore.add(tablet);
+        ProductCategory personal = new ProductCategory("Personal", "Programming", "Debugging and script writing.");
+        productCategoryDataStore.add(personal);
+        ProductCategory team = new ProductCategory("Team", "Project building", "Complex project building.");
+        productCategoryDataStore.add(team);
 
         //setting up products and printing it
-        productDataStore.add(new Product("Amazon Fire", new BigDecimal("49.9"), "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", tablet, amazon));
-        productDataStore.add(new Product("Lenovo IdeaPad Miix 700", new BigDecimal("479"), "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", tablet, lenovo));
-        productDataStore.add(new Product("Amazon Fire HD 8", new BigDecimal("89"), "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", tablet, amazon));
+        productDataStore.add(new Product("Peti", new BigDecimal("250"), "USD", "_", personal, codeCool));
+        productDataStore.add(new Product("Saz", new BigDecimal("150"), "EUR", "_", personal, codeCool));
+        productDataStore.add(new Product("Mate", new BigDecimal("100"), "USD", "_", personal, codeCool));
+        productDataStore.add(new Product("Ichy", new BigDecimal("100"), "USD", " ", personal, codeCool));
+        productDataStore.add(new Product("Balazs", new BigDecimal("250"), "HUF", " ", personal, codeCool));
+        productDataStore.add(new Product("Martin", new BigDecimal("5"), "EUR", " ", personal, greenFox));
+        productDataStore.add(new Product("Eric Cartman", new BigDecimal("300"), "USD", " ", personal, greenFox));
+        productDataStore.add(new Product("Kenny McCormick", new BigDecimal("10"), "USD", " ", personal, greenFox));
+        productDataStore.add(new Product("ProgramING shop", new BigDecimal("800"), "EUR", " ", team, codeCool));
+        productDataStore.add(new Product("No IDEa", new BigDecimal("500"), "HUF", " ", team, greenFox));
+
     }
 }
