@@ -37,15 +37,16 @@ public class Initializer implements ServletContextListener {
         productCategoryDataStore.add(team);
 
         //setting up products and printing it
-        productDataStore.add(new Product("Peti", new BigDecimal("250"), "$", " ", personal, codeCool));
-        productDataStore.add(new Product("Saz", new BigDecimal("150"), "€", " ", personal, codeCool));
-        productDataStore.add(new Product("Máté", new BigDecimal("100"), "$", " ", personal, codeCool));
-        productDataStore.add(new Product("Ichy", new BigDecimal("100"), "€", " ", personal, codeCool));
+        productDataStore.add(new Product("Peti", new BigDecimal("250"), "USD", "_", personal, codeCool));
+        productDataStore.add(new Product("Saz", new BigDecimal("150"), "EUR", "_", personal, codeCool));
+        productDataStore.add(new Product("Mate", new BigDecimal("100"), "USD", "_", personal, codeCool));
+        productDataStore.add(new Product("Ichy", new BigDecimal("100"), "USD", " ", personal, codeCool));
+        productDataStore.add(new Product("Balazs", new BigDecimal("250"), "HUF", " ", personal, codeCool));
+        productDataStore.add(new Product("Martin", new BigDecimal("5"), "EUR", " ", personal, greenFox));
+        productDataStore.add(new Product("Eric Cartman", new BigDecimal("300"), "USD", " ", personal, greenFox));
+        productDataStore.add(new Product("Kenny McCormick", new BigDecimal("10"), "USD", " ", personal, greenFox));
+        productDataStore.add(new Product("Programm \uD83D\uDC55 shop", new BigDecimal("800"), "EUR", " ", team, codeCool));
         productDataStore.add(new Product("No IDEa", new BigDecimal("500"), "HUF", " ", team, greenFox));
-        productDataStore.add(new Product("Martin", new BigDecimal("5"), "€", " ", personal, greenFox));
-        productDataStore.add(new Product("Balázs", new BigDecimal("250"), "HUF", " ", personal, codeCool));
-        productDataStore.add(new Product("Programm \uD83D\uDC55 shop", new BigDecimal("800"), "€", " ", team, codeCool));
-        productDataStore.add(new Product("Eric Cartman", new BigDecimal("300"), "$", " ", personal, greenFox));
-        productDataStore.add(new Product("Kenny McCormick", new BigDecimal("10"), "$", " ", personal, greenFox));
+
     }
 }
