@@ -10,12 +10,16 @@ import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 import com.codecool.shop.service.FileHandler;
+import com.google.gson.Gson;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-import java.io.File;
+import java.io.*;
 import java.math.BigDecimal;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
 
 @WebListener
 public class Initializer implements ServletContextListener {
@@ -25,25 +29,29 @@ public class Initializer implements ServletContextListener {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
+        String supplierFilePath = "src/main/resources/data/suppliers.json";
+        String categoriesFilePath = "src/main/resources/data/categories.json";
+        String productsFilePath = "src/main/resources/data/products.json";
+        try {
+            SupplierDaoMem.setInstance(new Gson().fromJson(new FileReader(supplierFilePath), SupplierDaoMem.class));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            ProductCategoryDaoMem.setInstance(new Gson().fromJson(new FileReader(categoriesFilePath), ProductCategoryDaoMem.class));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            ProductDaoMem.setInstance(new Gson().fromJson(new FileReader(productsFilePath), ProductDaoMem.class));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
-        //setting up a new supplier
-        Supplier amazon = new Supplier("Amazon", "Digital content and services");
-        supplierDataStore.add(amazon);
-        Supplier lenovo = new Supplier("Lenovo", "Computers");
-        supplierDataStore.add(lenovo);
+        //FileHandler fileHandler = new FileHandler();
+        //fileHandler.saveFile(fileHandler.exportSupplierDao(), fileHandler.getSupplierFile());
+        //fileHandler.saveFile(fileHandler.exportProductCategoryDao(), fileHandler.getCategoryFile());
+        //fileHandler.saveFile(fileHandler.exportProductDao(), fileHandler.getProductFile());
 
-        //setting up a new product category
-        ProductCategory tablet = new ProductCategory("Tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
-        productCategoryDataStore.add(tablet);
-
-        //setting up products and printing it
-        productDataStore.add(new Product("Amazon Fire", new BigDecimal("49.9"), "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", tablet, amazon));
-        productDataStore.add(new Product("Lenovo IdeaPad Miix 700", new BigDecimal("479"), "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", tablet, lenovo));
-        productDataStore.add(new Product("Amazon Fire HD 8", new BigDecimal("89"), "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", tablet, amazon));
-
-        FileHandler fileHandler = new FileHandler();
-        fileHandler.saveFile(fileHandler.exportSupplierDao(), fileHandler.getSupplierFile());
-        fileHandler.saveFile(fileHandler.exportProductCategoryDao(), fileHandler.getCategoryFile());
-        fileHandler.saveFile(fileHandler.exportProductDao(), fileHandler.getProductFile());
     }
 }

@@ -27,6 +27,10 @@ public class ProductDaoMem implements ProductDao {
         return instance;
     }
 
+    public static void setInstance(ProductDaoMem instance) {
+        ProductDaoMem.instance = instance;
+    }
+
     @Override
     public void add(Product product) {
         product.setId(products.size() + 1);
@@ -50,11 +54,18 @@ public class ProductDaoMem implements ProductDao {
 
     @Override
     public List<Product> getBy(Supplier supplier) {
-        return products.stream().filter(t -> t.getSupplier().equals(supplier)).collect(Collectors.toList());
+        return products.stream().filter(t -> t.getSupplier().getId() == supplier.getId()).collect(Collectors.toList());
     }
 
     @Override
     public List<Product> getBy(ProductCategory productCategory) {
-        return products.stream().filter(t -> t.getProductCategory().equals(productCategory)).collect(Collectors.toList());
+        return products.stream().filter(t -> t.getProductCategory().getId() == (productCategory.getId())).collect(Collectors.toList());
+    }
+
+    @Override
+    public String toString() {
+        return "ProductDaoMem{" +
+                "products=" + products +
+                '}';
     }
 }

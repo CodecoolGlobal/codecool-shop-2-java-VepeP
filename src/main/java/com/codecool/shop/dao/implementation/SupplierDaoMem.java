@@ -23,6 +23,10 @@ public class SupplierDaoMem implements SupplierDao {
         return instance;
     }
 
+    public static void setInstance(SupplierDaoMem instance) {
+        SupplierDaoMem.instance = instance;
+    }
+
     @Override
     public void add(Supplier supplier) {
         supplier.setId(suppliers.size() + 1);
@@ -42,5 +46,12 @@ public class SupplierDaoMem implements SupplierDao {
     @Override
     public List<Supplier> getAll() {
         return suppliers;
+    }
+
+    @Override
+    public String toString() {
+        return "SupplierDaoMem{" +
+                "suppliers=" + suppliers +
+                '}';
     }
 }
