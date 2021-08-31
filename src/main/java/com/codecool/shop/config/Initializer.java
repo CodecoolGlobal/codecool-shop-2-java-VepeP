@@ -1,8 +1,10 @@
 package com.codecool.shop.config;
 
+import com.codecool.shop.dao.CartDao;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.dao.implementation.CartDaoMem;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
@@ -29,9 +31,11 @@ public class Initializer implements ServletContextListener {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
+        CartDao cartDataStore = CartDaoMem.getInstance();
         String supplierFilePath = "src/main/resources/data/suppliers.json";
         String categoriesFilePath = "src/main/resources/data/categories.json";
         String productsFilePath = "src/main/resources/data/products.json";
+        String cartFilePath = "src/main/resources/data/shoppingCart.json";
         try {
             SupplierDaoMem.setInstance(new Gson().fromJson(new FileReader(supplierFilePath), SupplierDaoMem.class));
         } catch (FileNotFoundException e) {
@@ -44,6 +48,11 @@ public class Initializer implements ServletContextListener {
         }
         try {
             ProductDaoMem.setInstance(new Gson().fromJson(new FileReader(productsFilePath), ProductDaoMem.class));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            CartDaoMem.setInstance(new Gson().fromJson(new FileReader(cartFilePath), CartDaoMem.class));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
