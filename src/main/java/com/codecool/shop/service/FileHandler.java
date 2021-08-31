@@ -1,8 +1,10 @@
 package com.codecool.shop.service;
 
+import com.codecool.shop.dao.CartDao;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.dao.implementation.CartDaoMem;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
@@ -14,7 +16,6 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 public class FileHandler {
-    //private final Gson gson = new Gson();
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public FileHandler() {
@@ -43,6 +44,10 @@ public class FileHandler {
         return new File("src/main/resources/data/products.json");
     }
 
+    public File getCartFile(){
+        return new File("src/main/resources/data/shoppingCart.json");
+    }
+
     public String exportProductDao() {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         return gson.toJson(productDataStore);
@@ -56,5 +61,10 @@ public class FileHandler {
     public String exportSupplierDao() {
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
         return gson.toJson(supplierDataStore);
+    }
+
+    public String exportCartDao() {
+        CartDao cartDataStore = CartDaoMem.getInstance();
+        return gson.toJson(cartDataStore);
     }
 }

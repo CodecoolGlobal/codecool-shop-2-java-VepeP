@@ -3,6 +3,7 @@ package com.codecool.shop.datahandler;
 import com.codecool.shop.dao.CartDao;
 import com.codecool.shop.dao.implementation.CartDaoMem;
 import com.codecool.shop.model.Product;
+import com.codecool.shop.service.FileHandler;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +24,12 @@ public class AddToCartServlet extends HttpServlet {
             CartDao cartDataStore = CartDaoMem.getInstance();
             Product actProduct = cartDataStore.find(productID);
 
-            if (actProduct != null) cartDataStore.add(actProduct);
+            if (actProduct != null) {
+                cartDataStore.add(actProduct);
+
+                FileHandler fileHandler = new FileHandler();
+                fileHandler.saveFile(fileHandler.exportCartDao(), fileHandler.getCartFile());
+            }
         }
     }
 }
