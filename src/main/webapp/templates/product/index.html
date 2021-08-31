@@ -43,19 +43,17 @@
 <div class="container">
 
     <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">supplier
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Suppliers
             <span class="caret"></span></button>
         <ul class="dropdown-menu">
-            <li><a href="#">codecool</a></li>
-            <li><a href="#">greenfucks</a></li>
+            <li th:each="sup : ${suppliers}"><a href="#" th:text="${sup.name}">Supplier</a></li>
         </ul>
     </div>
     <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">type
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Categories
             <span class="caret"></span></button>
         <ul class="dropdown-menu">
-            <li><a href="#">team</a></li>
-            <li><a href="#">person</a></li>
+            <li th:each="cat : ${categories}"><a href="#" th:text="${cat.name}">Category</a></li>
         </ul>
     </div>
 
