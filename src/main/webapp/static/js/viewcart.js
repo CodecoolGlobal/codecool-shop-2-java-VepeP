@@ -26,7 +26,7 @@ button.addEventListener("click", async () => {
                                 </td>
                                 <td>$${item.defaultPrice} </td>
                                 <td data-th="Quantity">
-                                    <input type="number" class="form-control text-center" value="${item.quantity}">
+                                    <input type="number" class="form-control text-center" value="${item.quantity}" min="0" max="168">
                                 </td>
                                 <td>USD ${subtotal}</td>
                                 <td class="actions" data-th="" style="width:10%;">
