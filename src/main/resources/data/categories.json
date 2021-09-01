@@ -1,10 +1,16 @@
 {
   "categories": [
     {
-      "department": "Hardware",
+      "department": "Programming",
       "id": 1,
-      "name": "Tablet",
-      "description": "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display."
+      "name": "Personal",
+      "description": "Debugging and script writing."
+    },
+    {
+      "department": "Project building",
+      "id": 2,
+      "name": "Team",
+      "description": "Complex project building."
     }
   ]
 }

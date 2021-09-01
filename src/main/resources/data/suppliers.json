@@ -2,13 +2,13 @@
   "suppliers": [
     {
       "id": 1,
-      "name": "Amazon",
-      "description": "Digital content and services"
+      "name": "Code Cool",
+      "description": "Programing School and Headhunter company"
     },
     {
       "id": 2,
-      "name": "Lenovo",
-      "description": "Computers"
+      "name": "Green Fox",
+      "description": "Programing School"
     }
   ]
 }

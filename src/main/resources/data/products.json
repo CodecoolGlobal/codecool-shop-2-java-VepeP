@@ -1,58 +1,74 @@
 {
   "products": [
     {
-      "defaultPrice": 49.9,
+      "defaultPrice": 250,
       "defaultCurrency": "USD",
-      "productCategory": {
-        "department": "Hardware",
-        "id": 1,
-        "name": "Tablet",
-        "description": "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display."
-      },
-      "supplier": {
-        "id": 1,
-        "name": "Amazon",
-        "description": "Digital content and services"
-      },
       "id": 1,
-      "name": "Amazon Fire",
-      "description": "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support."
+      "name": "Peti",
+      "description": "_"
     },
     {
-      "defaultPrice": 479,
-      "defaultCurrency": "USD",
-      "productCategory": {
-        "department": "Hardware",
-        "id": 1,
-        "name": "Tablet",
-        "description": "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display."
-      },
-      "supplier": {
-        "id": 2,
-        "name": "Lenovo",
-        "description": "Computers"
-      },
+      "defaultPrice": 150,
+      "defaultCurrency": "EUR",
       "id": 2,
-      "name": "Lenovo IdeaPad Miix 700",
-      "description": "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand."
+      "name": "Saz",
+      "description": "_"
     },
     {
-      "defaultPrice": 89,
+      "defaultPrice": 100,
       "defaultCurrency": "USD",
-      "productCategory": {
-        "department": "Hardware",
-        "id": 1,
-        "name": "Tablet",
-        "description": "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display."
-      },
-      "supplier": {
-        "id": 1,
-        "name": "Amazon",
-        "description": "Digital content and services"
-      },
       "id": 3,
-      "name": "Amazon Fire HD 8",
-      "description": "Amazon\u0027s latest Fire HD 8 tablet is a great value for media consumption."
+      "name": "Mate",
+      "description": "_"
+    },
+    {
+      "defaultPrice": 100,
+      "defaultCurrency": "USD",
+      "id": 4,
+      "name": "Ichy",
+      "description": " "
+    },
+    {
+      "defaultPrice": 250,
+      "defaultCurrency": "HUF",
+      "id": 5,
+      "name": "Balazs",
+      "description": " "
+    },
+    {
+      "defaultPrice": 5,
+      "defaultCurrency": "EUR",
+      "id": 6,
+      "name": "Martin",
+      "description": " "
+    },
+    {
+      "defaultPrice": 300,
+      "defaultCurrency": "USD",
+      "id": 7,
+      "name": "Eric Cartman",
+      "description": " "
+    },
+    {
+      "defaultPrice": 10,
+      "defaultCurrency": "USD",
+      "id": 8,
+      "name": "Kenny McCormick",
+      "description": " "
+    },
+    {
+      "defaultPrice": 800,
+      "defaultCurrency": "EUR",
+      "id": 9,
+      "name": "ProgramING shop",
+      "description": " "
+    },
+    {
+      "defaultPrice": 500,
+      "defaultCurrency": "HUF",
+      "id": 10,
+      "name": "No IDEa",
+      "description": " "
     }
   ]
 }

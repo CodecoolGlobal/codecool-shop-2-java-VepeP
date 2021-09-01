@@ -60,3 +60,34 @@
 {
     margin: 0 0 11px;
 }
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%);
+}
+
+.dropdown {
+    display: inline;
+}
+
+
+.search {
+    float: right;
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 17px;
+}
+
+.card {
+    margin-top: 20px;
+}
+
+.category-title {
+    margin-top: 40px;
+    color: white;
+    font-size: 60px;
+}
+
+
