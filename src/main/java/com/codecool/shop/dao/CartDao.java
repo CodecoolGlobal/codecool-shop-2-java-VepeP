@@ -1,5 +1,6 @@
 package com.codecool.shop.dao;
 
+import com.codecool.shop.model.CartProduct;
 import com.codecool.shop.model.Supplier;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
@@ -15,6 +16,6 @@ public interface CartDao {
 
     void decreaseProductQuantity(int id);
 
-    List<Product> getAll();
+    List<CartProduct> getAll();
 
 }
