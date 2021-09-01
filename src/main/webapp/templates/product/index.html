@@ -32,6 +32,9 @@
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
     <link rel="stylesheet" type="text/css" href="/static/css/wave.css" />
 
+    <script src="/static/js/sorting.js" defer></script>
+
+
 </head>
 
 <body>
@@ -46,15 +49,13 @@
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Suppliers
             <span class="caret"></span></button>
         <ul class="dropdown-menu">
-            <li th:each="sup : ${suppliers}"><a href="#" th:text="${sup.name}">Supplier</a></li>
-        </ul>
+            <li th:each="sup : ${suppliers}"><a href="#" th:attr="data-id=${sup.getId()}" th:data-name="${sup.getName()}" class="supplier-select" th:text="${sup.name}">Supplier</a></li>        </ul>
     </div>
     <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Categories
             <span class="caret"></span></button>
         <ul class="dropdown-menu">
-            <li th:each="cat : ${categories}"><a href="#" th:text="${cat.name}">Category</a></li>
-        </ul>
+            <li th:each="cat : ${categories}"><a href="#" th:attr="data-id=${cat.getId()}" th:data-name="${cat.getName()}" class="category-select" th:text="${cat.name}">Category</a></li>        </ul>
     </div>
 
     <div class="search">
@@ -67,7 +68,7 @@
 
 <div class="container">
     <div class="category-title">
-        <strong>All products</strong>
+        <strong id="sort-title">All products</strong>
     </div>
 
     <div id="products" class="row">
