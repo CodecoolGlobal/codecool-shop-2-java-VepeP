@@ -1,31 +1,34 @@
 const button = document.getElementById("viewcartbutton")
 
 
-button.addEventListener("click", () => {
-    alert("BAZDARCONMAGAD")
+button.addEventListener("click", async () => {
+    let data = await fetchCart()
 
-    let data = fetchCart()
+    let total = 0
 
     let cartitemsHTML = ``
 
     for (let item of data) {
+        let subtotal = item.defaultPrice * item.quantity
+        total += subtotal
+
         cartitemsHTML += `
         <tr>
                                 <td>
                                     <div class="row">
                                         <div class="col-lg-2 Product-img">
-                                            <img src="https://images.unsplash.com/photo-1562106783-b9ca87a40fc7?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=60" alt="..." class="img-responsive" />
+                                            <img src='static/img/product_${item.id}.jpg' alt="..." class="img-responsive" />
                                         </div>
                                         <div class="col-lg-10">
                                             <h4 class="nomargin">${item.name}</h4>
                                         </div>
                                     </div>
                                 </td>
-                                <td> 12,000 </td>
+                                <td>$${item.defaultPrice} </td>
                                 <td data-th="Quantity">
-                                    <input type="number" class="form-control text-center" value="1">
+                                    <input type="number" class="form-control text-center" value="${item.quantity}">
                                 </td>
-                                <td>12,000</td>
+                                <td>USD ${subtotal}</td>
                                 <td class="actions" data-th="" style="width:10%;">
                                     <button class="btn btn-warning btn-sm"><i class="fa fa-refresh"></i></button>
                                     <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
@@ -34,7 +37,10 @@ button.addEventListener("click", () => {
         
         `
 
-        document.getElementById(".cartitemsplace").innerHTML = cartitemsHTML
+        console.log(cartitemsHTML)
+
+        document.getElementById("cartitemsplace").innerHTML = cartitemsHTML
+        document.getElementById("totalprice").innerText="Total:  " + total
 
     }
 
