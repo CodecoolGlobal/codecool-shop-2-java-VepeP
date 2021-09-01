@@ -33,6 +33,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/wave.css" />
 
     <script src="/static/js/sorting.js" defer></script>
+    <script src="/static/js/addtocart.js" defer></script>
 
 
 </head>
@@ -84,7 +85,7 @@
                         <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
                     </div>
                     <div class="card-text">
-                        <a class="btn btn-success" href="#">Add to cart</a>
+                        <a class="btn btn-success cartbutton" th:data-id="${prod.getId()}" href="#">Add to cart</a>
                     </div>
                 </div>
             </div>
