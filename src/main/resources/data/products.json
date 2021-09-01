@@ -1,0 +1,74 @@
+{
+  "products": [
+    {
+      "defaultPrice": 250,
+      "defaultCurrency": "USD",
+      "id": 1,
+      "name": "Peti",
+      "description": "_"
+    },
+    {
+      "defaultPrice": 150,
+      "defaultCurrency": "EUR",
+      "id": 2,
+      "name": "Saz",
+      "description": "_"
+    },
+    {
+      "defaultPrice": 100,
+      "defaultCurrency": "USD",
+      "id": 3,
+      "name": "Mate",
+      "description": "_"
+    },
+    {
+      "defaultPrice": 100,
+      "defaultCurrency": "USD",
+      "id": 4,
+      "name": "Ichy",
+      "description": " "
+    },
+    {
+      "defaultPrice": 250,
+      "defaultCurrency": "HUF",
+      "id": 5,
+      "name": "Balazs",
+      "description": " "
+    },
+    {
+      "defaultPrice": 5,
+      "defaultCurrency": "EUR",
+      "id": 6,
+      "name": "Martin",
+      "description": " "
+    },
+    {
+      "defaultPrice": 300,
+      "defaultCurrency": "USD",
+      "id": 7,
+      "name": "Eric Cartman",
+      "description": " "
+    },
+    {
+      "defaultPrice": 10,
+      "defaultCurrency": "USD",
+      "id": 8,
+      "name": "Kenny McCormick",
+      "description": " "
+    },
+    {
+      "defaultPrice": 800,
+      "defaultCurrency": "EUR",
+      "id": 9,
+      "name": "ProgramING shop",
+      "description": " "
+    },
+    {
+      "defaultPrice": 500,
+      "defaultCurrency": "HUF",
+      "id": 10,
+      "name": "No IDEa",
+      "description": " "
+    }
+  ]
+}

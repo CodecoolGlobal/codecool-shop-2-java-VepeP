@@ -3,11 +3,16 @@ package com.codecool.shop.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class    Supplier extends BaseModel {
-    private List<Product> products;
+public class Supplier extends BaseModel {
+    private transient List<Product> products;
+
+    public Supplier(int id, String name, String description) {
+        super(id, name, description);
+        this.products = new ArrayList<>();
+    }
 
     public Supplier(String name, String description) {
-        super(name);
+        super(name, description);
         this.products = new ArrayList<>();
     }
 

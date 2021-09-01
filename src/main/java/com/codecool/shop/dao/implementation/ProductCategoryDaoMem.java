@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ProductCategoryDaoMem implements ProductCategoryDao {
 
-    private List<ProductCategory> data = new ArrayList<>();
+    private List<ProductCategory> categories = new ArrayList<>();
     private static ProductCategoryDaoMem instance = null;
 
     /* A private Constructor prevents any other class from instantiating.
@@ -24,24 +24,35 @@ public class ProductCategoryDaoMem implements ProductCategoryDao {
         return instance;
     }
 
+    public static void setInstance(ProductCategoryDaoMem instance) {
+        ProductCategoryDaoMem.instance = instance;
+    }
+
     @Override
     public void add(ProductCategory category) {
-        category.setId(data.size() + 1);
-        data.add(category);
+        category.setId(categories.size() + 1);
+        categories.add(category);
     }
 
     @Override
     public ProductCategory find(int id) {
-        return data.stream().filter(t -> t.getId() == id).findFirst().orElse(null);
+        return categories.stream().filter(t -> t.getId() == id).findFirst().orElse(null);
     }
 
     @Override
     public void remove(int id) {
-        data.remove(find(id));
+        categories.remove(find(id));
     }
 
     @Override
     public List<ProductCategory> getAll() {
-        return data;
+        return categories;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductCategoryDaoMem{" +
+                "categories=" + categories +
+                '}';
     }
 }

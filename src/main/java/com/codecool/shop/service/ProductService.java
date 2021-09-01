@@ -5,7 +5,6 @@ import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductService{
@@ -19,16 +18,6 @@ public class ProductService{
 
     public ProductCategory getProductCategory(int categoryId){
         return productCategoryDao.find(categoryId);
-    }
-
-    public List<Product> getAllProducts() {
-        List<Product> allProduct = new ArrayList<>();
-
-        for (ProductCategory category: productCategoryDao.getAll()) {
-            allProduct.addAll(category.getProducts());
-        }
-
-        return allProduct;
     }
 
     public List<Product> getProductsForCategory(int categoryId){

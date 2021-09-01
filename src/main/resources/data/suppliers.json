@@ -1,0 +1,14 @@
+{
+  "suppliers": [
+    {
+      "id": 1,
+      "name": "Code Cool",
+      "description": "Programing School and Headhunter company"
+    },
+    {
+      "id": 2,
+      "name": "Green Fox",
+      "description": "Programing School"
+    }
+  ]
+}

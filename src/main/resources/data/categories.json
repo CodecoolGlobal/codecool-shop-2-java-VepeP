@@ -1,0 +1,16 @@
+{
+  "categories": [
+    {
+      "department": "Programming",
+      "id": 1,
+      "name": "Personal",
+      "description": "Debugging and script writing."
+    },
+    {
+      "department": "Project building",
+      "id": 2,
+      "name": "Team",
+      "description": "Complex project building."
+    }
+  ]
+}
