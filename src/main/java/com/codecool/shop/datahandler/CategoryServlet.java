@@ -3,6 +3,7 @@ package com.codecool.shop.datahandler;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.model.ProductCategory;
+import com.google.gson.Gson;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +16,7 @@ import java.io.PrintWriter;
 public class CategoryServlet extends HttpServlet {
 
     ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+    Gson gson = new Gson();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -26,6 +28,6 @@ public class CategoryServlet extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
-        out.println(category.getProducts());
+        out.println(gson.toJson(category.getProducts()));
     }
 }
