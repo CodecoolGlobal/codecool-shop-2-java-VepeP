@@ -94,3 +94,14 @@ body {
     width: 100%;
 }
 
+#viewcartbutton{
+    float: right;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 60px;
+    font-size: 40px;
+    background: red;
+
+
+}
+
