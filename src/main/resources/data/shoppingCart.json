@@ -1,5 +1,7 @@
 {
   "shoppingCart": {
-    "id: 1, name: Amazon Fire, defaultPrice: 49,900000, defaultCurrency: USD, productCategory: Tablet, supplier: Amazon": 2
+    "1": 2,
+    "2": 1,
+    "3": 2
   }
 }

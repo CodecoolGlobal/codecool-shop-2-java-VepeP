@@ -28,13 +28,12 @@ public class ModifyCartServlet extends HttpServlet {
             int productID = Integer.parseInt(id);
 
             CartDao cartDataStore = CartDaoMem.getInstance();
-            Product actProduct = cartDataStore.find(productID);
 
-            if (actProduct != null && !amount.equals("")) {
+            if (!amount.equals("")) {
                 int actAmount = Integer.parseInt(amount);
 
-                if (actAmount == 1) cartDataStore.add(actProduct);
-                else cartDataStore.decreaseProductQuantity(actProduct);
+                if (actAmount == 1) cartDataStore.add(productID);
+                else if (actAmount == -1) cartDataStore.decreaseProductQuantity(productID);
 
                 FileHandler fileHandler = new FileHandler();
                 fileHandler.saveFile(fileHandler.exportCartDao(), fileHandler.getCartFile());

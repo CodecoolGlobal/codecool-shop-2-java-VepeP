@@ -28,7 +28,7 @@ public class AddToCartServlet extends HttpServlet {
             Product actProduct = productDataStore.find(productID);
 
             if (actProduct != null) {
-                cartDataStore.add(actProduct);
+                cartDataStore.add(productID);
 
                 FileHandler fileHandler = new FileHandler();
                 fileHandler.saveFile(fileHandler.exportCartDao(), fileHandler.getCartFile());
