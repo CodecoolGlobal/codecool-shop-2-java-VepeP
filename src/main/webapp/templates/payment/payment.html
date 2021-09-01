@@ -80,7 +80,7 @@
             <p th:each="prod : ${products}"><a href="#" th:text="${prod.name}">Product name</a>
                 <span class="price" th:text="
                     ${prod.quantity} + ' * ' + ${prod.defaultPrice} + ${prod.defaultCurrency} + ' = ' +
-                    ${#numbers.formatInteger(prod.defaultPrice, 0) * #numbers.formatInteger(prod.quantity, 0) } +
+                    ${#numbers.formatInteger(prod.defaultPrice, 0) * #numbers.formatInteger(prod.quantity, 0) } + ' ' +
                     ${prod.defaultCurrency}">Price</span></p>
 
             <hr>
