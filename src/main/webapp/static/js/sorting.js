@@ -1,12 +1,25 @@
-document.querySelectorAll(".category-select").forEach( item => item.addEventListener("click", async () => console.log(await fetchSortedItems(1))))
+document.querySelectorAll(".category-select").forEach( item => item.addEventListener("click", async () => {
+    let id = item.dataset.id
+    sort("categories", id)
+}))
 document.querySelectorAll(".supplier-select").forEach( item => item.addEventListener("click", () => console.log('clicked')))
 
 
+let sortTitle = document.getElementById('sortTitle')
+let items = document.getElementById('products')
 
 
-async function fetchSortedItems(id) {
+function sort (type, id) {
+    let data = fetchSortedItems(id)
+
+
+}
+
+
+
+async function fetchSortedItems(type, id) {
     try {
-        const response = await fetch(`/categories?id=${id}`)
+        const response = await fetch(`/${type}?id=${id}`)
         const data = await response.json()
         return data
 
