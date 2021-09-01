@@ -18,4 +18,6 @@ public interface CartDao {
 
     List<CartProduct> getAll();
 
+    Integer getTotalPrice();
+
 }

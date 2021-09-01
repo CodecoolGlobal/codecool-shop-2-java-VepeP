@@ -77,6 +77,15 @@ public class CartDaoMem implements CartDao {
     }
 
     @Override
+    public Integer getTotalPrice() {
+        int total = 0;
+        for (CartProduct product: this.getAll()) {
+            total += product.getQuantity() * product.getDefaultPrice().intValue();
+        }
+        return total;
+    }
+
+    @Override
     public String toString() {
         return "CartDaoMem{" +
                 "shoppingCart=" + shoppingCart +
