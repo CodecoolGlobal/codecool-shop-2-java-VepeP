@@ -3,6 +3,17 @@
     {
       "defaultPrice": 250,
       "defaultCurrency": "USD",
+      "productCategory": {
+        "department": "Programming",
+        "id": 1,
+        "name": "Personal",
+        "description": "Debugging and script writing."
+      },
+      "supplier": {
+        "id": 1,
+        "name": "Code Cool",
+        "description": "Programing School and Headhunter company"
+      },
       "id": 1,
       "name": "Peti",
       "description": "_"
@@ -10,6 +21,17 @@
     {
       "defaultPrice": 150,
       "defaultCurrency": "EUR",
+      "productCategory": {
+        "department": "Programming",
+        "id": 1,
+        "name": "Personal",
+        "description": "Debugging and script writing."
+      },
+      "supplier": {
+        "id": 1,
+        "name": "Code Cool",
+        "description": "Programing School and Headhunter company"
+      },
       "id": 2,
       "name": "Saz",
       "description": "_"
@@ -17,6 +39,17 @@
     {
       "defaultPrice": 100,
       "defaultCurrency": "USD",
+      "productCategory": {
+        "department": "Programming",
+        "id": 1,
+        "name": "Personal",
+        "description": "Debugging and script writing."
+      },
+      "supplier": {
+        "id": 1,
+        "name": "Code Cool",
+        "description": "Programing School and Headhunter company"
+      },
       "id": 3,
       "name": "Mate",
       "description": "_"
@@ -24,6 +57,17 @@
     {
       "defaultPrice": 100,
       "defaultCurrency": "USD",
+      "productCategory": {
+        "department": "Programming",
+        "id": 1,
+        "name": "Personal",
+        "description": "Debugging and script writing."
+      },
+      "supplier": {
+        "id": 1,
+        "name": "Code Cool",
+        "description": "Programing School and Headhunter company"
+      },
       "id": 4,
       "name": "Ichy",
       "description": " "
@@ -31,6 +75,17 @@
     {
       "defaultPrice": 250,
       "defaultCurrency": "HUF",
+      "productCategory": {
+        "department": "Programming",
+        "id": 1,
+        "name": "Personal",
+        "description": "Debugging and script writing."
+      },
+      "supplier": {
+        "id": 1,
+        "name": "Code Cool",
+        "description": "Programing School and Headhunter company"
+      },
       "id": 5,
       "name": "Balazs",
       "description": " "
@@ -38,6 +93,17 @@
     {
       "defaultPrice": 5,
       "defaultCurrency": "EUR",
+      "productCategory": {
+        "department": "Programming",
+        "id": 1,
+        "name": "Personal",
+        "description": "Debugging and script writing."
+      },
+      "supplier": {
+        "id": 2,
+        "name": "Green Fox",
+        "description": "Programing School"
+      },
       "id": 6,
       "name": "Martin",
       "description": " "
@@ -45,6 +111,17 @@
     {
       "defaultPrice": 300,
       "defaultCurrency": "USD",
+      "productCategory": {
+        "department": "Programming",
+        "id": 1,
+        "name": "Personal",
+        "description": "Debugging and script writing."
+      },
+      "supplier": {
+        "id": 2,
+        "name": "Green Fox",
+        "description": "Programing School"
+      },
       "id": 7,
       "name": "Eric Cartman",
       "description": " "
@@ -52,6 +129,17 @@
     {
       "defaultPrice": 10,
       "defaultCurrency": "USD",
+      "productCategory": {
+        "department": "Programming",
+        "id": 1,
+        "name": "Personal",
+        "description": "Debugging and script writing."
+      },
+      "supplier": {
+        "id": 2,
+        "name": "Green Fox",
+        "description": "Programing School"
+      },
       "id": 8,
       "name": "Kenny McCormick",
       "description": " "
@@ -59,6 +147,17 @@
     {
       "defaultPrice": 800,
       "defaultCurrency": "EUR",
+      "productCategory": {
+        "department": "Project building",
+        "id": 2,
+        "name": "Team",
+        "description": "Complex project building."
+      },
+      "supplier": {
+        "id": 1,
+        "name": "Code Cool",
+        "description": "Programing School and Headhunter company"
+      },
       "id": 9,
       "name": "ProgramING shop",
       "description": " "
@@ -66,6 +165,17 @@
     {
       "defaultPrice": 500,
       "defaultCurrency": "HUF",
+      "productCategory": {
+        "department": "Project building",
+        "id": 2,
+        "name": "Team",
+        "description": "Complex project building."
+      },
+      "supplier": {
+        "id": 2,
+        "name": "Green Fox",
+        "description": "Programing School"
+      },
       "id": 10,
       "name": "No IDEa",
       "description": " "
