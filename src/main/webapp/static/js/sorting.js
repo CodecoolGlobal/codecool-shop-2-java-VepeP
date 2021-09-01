@@ -1,4 +1,3 @@
-
 let sortTitle = document.getElementById('sort-title')
 let items = document.getElementById('products')
 
@@ -6,13 +5,11 @@ let items = document.getElementById('products')
 document.querySelectorAll(".category-select").forEach( item => item.addEventListener("click", () => {
     let id = item.dataset.id
     sort("categories", id)
-
     sortTitle.innerHTML = item.dataset.name
 }))
 document.querySelectorAll(".supplier-select").forEach( item => item.addEventListener("click", () => {
     let id = item.dataset.id
     sort("suppliers", id)
-
     sortTitle.innerHTML = item.dataset.name
 
 }))
@@ -50,14 +47,6 @@ async function sort (type, id) {
 
     items.innerHTML = itemsHTML
 
-
-   // if (type == "categories" && id == 1){sortTitle.innerText = "Personal"}
-   // if (type == "categories" && id == 2){sortTitle.innerText = "Team";}
-   // if (type == "suppliers" && id == 1){sortTitle.innerText = "Codecool";}
-   // if (type == "suppliers" && id == 2){sortTitle.innerText = "GreenFox";}
-
-
-
 }
 
 
@@ -65,8 +54,7 @@ async function sort (type, id) {
 async function fetchSortedItems(type, id) {
     try {
         const response = await fetch(`/${type}?id=${id}`)
-        const data = await response.json()
-        return data
+        return await response.json()
 
     } catch (e) {
         console.log('error', e)
