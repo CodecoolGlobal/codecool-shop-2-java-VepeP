@@ -34,6 +34,7 @@
 
     <script src="/static/js/sorting.js" defer></script>
     <script src="/static/js/addtocart.js" defer></script>
+    <script src="/static/js/viewcart.js" defer></script>
 
 
 </head>
@@ -96,7 +97,7 @@
 
 
 <!-- Large modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" id="viewcartbutton">Large modal</button>
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -117,7 +118,7 @@
                                 <th>Action</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="cartitemsplace">
                             <tr>
                                 <td>
                                     <div class="row">
