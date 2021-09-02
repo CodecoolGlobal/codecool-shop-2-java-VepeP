@@ -7,6 +7,14 @@ const userData = {
     zip: ""
 };
 
+const cardData = {
+    name: "",
+    number: "",
+    month: "",
+    year: "",
+    cvv: ""
+}
+
 let payment = {
     init: function () {
         this.initCheckoutButton();
@@ -26,11 +34,17 @@ let payment = {
         userData.state = document.querySelector('#state').value;
         userData.zip = document.querySelector('#zip').value;
 
+        cardData.name = document.querySelector('#cname').value;
+        cardData.number = document.querySelector('#ccnum').value;
+        cardData.month = document.querySelector('#expmonth').value;
+        cardData.year = document.querySelector('#expyear').value;
+        cardData.cvv = document.querySelector('#cvv').value;
+
         payment.checkData();
     },
 
     checkData: function() {
-        let access = false;
+        let access = true;
 
         for (let data in userData) {
             if (userData[data] === "") {
@@ -38,7 +52,14 @@ let payment = {
                 access = false;
                 break;
             }
-            else access = true;
+        }
+
+        for (let data in cardData) {
+            if (cardData[data] === "") {
+                alert(`Please enter ${data} from your Card`);
+                access = false;
+                break;
+            }
         }
 
         if (access) payment.dataPost();
@@ -53,6 +74,8 @@ let payment = {
             },
             body: JSON.stringify(userData)})
             .then();
+
+        window.location.href = "/";
     }
 };
 
