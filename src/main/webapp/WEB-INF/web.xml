@@ -14,8 +14,8 @@
 		<servlet-class>com.codecool.shop.datahandler.SendEmailServlet</servlet-class>
 	</servlet>
 
-	<servlet-mapping>
+<!--	<servlet-mapping>
 		<servlet-name>SendEmailServlet</servlet-name>
 		<url-pattern>/sendEmail</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping>-->
 </web-app>

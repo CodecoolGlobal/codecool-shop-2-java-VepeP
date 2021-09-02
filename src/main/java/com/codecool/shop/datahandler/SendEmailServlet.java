@@ -3,11 +3,16 @@ package com.codecool.shop.datahandler;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.annotation.WebInitParam;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Properties;
 
+@WebServlet(name = "sendEmailServlet",
+        urlPatterns = {"/sendEmail"},
+        initParams = {@WebInitParam(name = "orderId", value = "")})
 public class SendEmailServlet extends HttpServlet {
 
     private static final String USER_NAME = "programmingshop2021";
@@ -15,12 +20,16 @@ public class SendEmailServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
 
-        String RECIPIENT = "programmingshop2021@gmail.com";
-        String[] to = {RECIPIENT};
-        String subject = "Java send mail example";
-        String body = "hi ....,!";
+        String orderId = request.getParameter("orderId");
+        if (orderId != null && !orderId.equals("")) {
+            // TODO get data from order #orderID.json file
+            String RECIPIENT = "programmingshop2021@gmail.com";
+            String[] to = {RECIPIENT};
+            String subject = "Java send mail example";
+            String body = "hi ....,!";
 
-        sendFromGMail(to, subject, body);
+            sendFromGMail(to, subject, body);
+        }
     }
 
     private static void sendFromGMail(String[] to, String subject, String body) {
