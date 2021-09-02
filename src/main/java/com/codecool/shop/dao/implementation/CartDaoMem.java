@@ -7,6 +7,7 @@ import com.codecool.shop.model.CartProduct;
 import com.codecool.shop.model.Product;
 
 import java.util.ArrayList;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -74,6 +75,19 @@ public class CartDaoMem implements CartDao {
         for (int actId : shoppingCart.keySet())
             if (id == actId) return true;
         return false;
+    }
+
+    @Override
+    public BigDecimal getTotalPrice() {
+        BigDecimal total = BigDecimal.valueOf(0);
+        for (CartProduct product: this.getAll()) {
+            BigDecimal quantity = BigDecimal.valueOf(product.getQuantity());
+            BigDecimal price = product.getDefaultPrice();
+            BigDecimal sum = quantity.multiply(price);
+
+            total = total.add(sum);
+        }
+        return total;
     }
 
     @Override
