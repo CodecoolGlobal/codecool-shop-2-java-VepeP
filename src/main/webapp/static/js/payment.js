@@ -30,17 +30,29 @@ let payment = {
     },
 
     checkData: function() {
+        let access = false;
+
         for (let data in userData) {
             if (userData[data] === "") {
                 alert(`Please enter your ${data}`);
+                access = false;
                 break;
             }
-            else payment.dataPost();
+            else access = true;
         }
+
+        if (access) payment.dataPost();
     },
 
     dataPost: function() {
-
+        fetch("/user-data", {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)})
+            .then();
     }
 };
 
