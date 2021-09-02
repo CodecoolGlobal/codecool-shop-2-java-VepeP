@@ -1,5 +1,5 @@
-let sortTitle = document.getElementById('sort-title')
-let items = document.getElementById('products')
+const sortTitle = document.getElementById('sort-title')
+const items = document.getElementById('products')
 
 
 document.querySelectorAll(".category-select").forEach( item => item.addEventListener("click", () => {
@@ -36,7 +36,7 @@ async function sort (type, id) {
                         <p class="lead">${item.defaultPrice} ${item.defaultCurrency}</p>
                     </div>
                     <div class="card-text">
-                        <a class="btn btn-success" href="#">Add to cart</a>
+                        <a class="btn btn-success">Add to cart</a>
                     </div>
                 </div>
             </div>

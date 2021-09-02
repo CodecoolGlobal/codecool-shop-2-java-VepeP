@@ -1,7 +1,7 @@
 const button = document.getElementById("viewcartbutton")
 
 
-button.addEventListener("click", async () => {
+button.addEventListener("click", async function get() {
     let data = await fetchCart()
 
     let total = 0
@@ -26,7 +26,7 @@ button.addEventListener("click", async () => {
                                 </td>
                                 <td>$${item.defaultPrice} </td>
                                 <td data-th="Quantity">
-                                    <input type="number" class="form-control text-center" value="${item.quantity}" min="0" max="168">
+                                    <input type="number" class="form-control text-center quantitychanger" value="${item.quantity}" min="0" max="168" data-id="${item.id}">
                                 </td>
                                 <td>USD ${subtotal}</td>
                                 <td class="actions" data-th="" style="width:10%;">
@@ -35,12 +35,19 @@ button.addEventListener("click", async () => {
                                 </td>
                             </tr>
         
-        `
+        ` // backtick here, dont lose it
 
         document.getElementById("cartitemsplace").innerHTML = cartitemsHTML
-        document.getElementById("totalprice").innerText="Total:  " + total
 
     }
+
+    document.querySelectorAll(".quantitychanger").forEach(item => item.addEventListener('change', async ()=> {
+        await changeCart(item.dataset.id, item.value)
+        await get()
+
+    }))
+
+    document.getElementById("totalprice").innerText="Total:  " + total
 
 })
 
@@ -49,6 +56,14 @@ async function fetchCart() {
         const response = await fetch(`/getCart`)
         return await response.json()
 
+    } catch (e) {
+        console.log('error', e)
+    }
+}
+
+async function changeCart(id, quantity) {
+    try {
+        await fetch(`/modifyCart?id=${id}&amount=${quantity}`)
     } catch (e) {
         console.log('error', e)
     }

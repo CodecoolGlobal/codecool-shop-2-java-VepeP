@@ -29,15 +29,14 @@ public class ModifyCartServlet extends HttpServlet {
 
             CartDao cartDataStore = CartDaoMem.getInstance();
 
-            if (!amount.equals("")) {
-                int actAmount = Integer.parseInt(amount);
 
-                if (actAmount == 1) cartDataStore.add(productID);
-                else if (actAmount == -1) cartDataStore.decreaseProductQuantity(productID);
+            int actAmount = Integer.parseInt(amount);
 
-                FileHandler fileHandler = new FileHandler();
-                fileHandler.saveFile(fileHandler.exportCartDao(), fileHandler.getCartFile());
-            }
+            cartDataStore.set(productID, actAmount);
+
+            FileHandler fileHandler = new FileHandler();
+            fileHandler.saveFile(fileHandler.exportCartDao(), fileHandler.getCartFile());
+
         }
     }
 }
