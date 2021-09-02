@@ -9,6 +9,8 @@ public interface CartDao {
 
     void add(int id);
 
+    void set(int id, int amount);
+
     void remove(int id);
 
     void decreaseProductQuantity(int id);

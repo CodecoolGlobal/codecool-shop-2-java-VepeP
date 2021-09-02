@@ -99,13 +99,13 @@
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Suppliers
             <span class="caret"></span></button>
         <ul class="dropdown-menu">
-            <li th:each="sup : ${suppliers}"><a href="#" th:attr="data-id=${sup.getId()}" th:data-name="${sup.getName()}" class="supplier-select" th:text="${sup.name}">Supplier</a></li>        </ul>
+            <li th:each="sup : ${suppliers}"><a th:attr="data-id=${sup.getId()}" th:data-name="${sup.getName()}" class="supplier-select" th:text="${sup.name}">Supplier</a></li>        </ul>
     </div>
     <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Categories
             <span class="caret"></span></button>
         <ul class="dropdown-menu">
-            <li th:each="cat : ${categories}"><a href="#" th:attr="data-id=${cat.getId()}" th:data-name="${cat.getName()}" class="category-select" th:text="${cat.name}">Category</a></li>        </ul>
+            <li th:each="cat : ${categories}"><a th:attr="data-id=${cat.getId()}" th:data-name="${cat.getName()}" class="category-select" th:text="${cat.name}">Category</a></li>        </ul>
     </div>
 
     <div class="search">
@@ -134,7 +134,7 @@
                         <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
                     </div>
                     <div class="card-text">
-                        <a class="btn btn-success cartbutton" th:data-id="${prod.getId()}" href="#">Add to cart</a>
+                        <a class="btn btn-success cartbutton" th:data-id="${prod.getId()}">Add to cart</a>
                     </div>
                 </div>
             </div>

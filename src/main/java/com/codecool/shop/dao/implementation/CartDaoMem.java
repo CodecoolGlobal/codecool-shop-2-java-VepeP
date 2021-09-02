@@ -6,8 +6,8 @@ import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.model.CartProduct;
 import com.codecool.shop.model.Product;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -88,6 +88,16 @@ public class CartDaoMem implements CartDao {
             total = total.add(sum);
         }
         return total;
+    }
+
+    @Override
+    public void set(int id, int amount) {
+        if (amount > 0) {
+            shoppingCart.put(id, amount);
+        } else {
+            shoppingCart.remove(id);
+        }
+
     }
 
     @Override

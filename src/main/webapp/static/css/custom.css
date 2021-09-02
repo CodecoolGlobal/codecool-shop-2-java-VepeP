@@ -117,8 +117,8 @@ body {
 }
 .title p {
     font-size: 20px;
+    padding-bottom: 40px;
     border-bottom: 5px solid white;
-
 }
 
 input[type="text"] {
