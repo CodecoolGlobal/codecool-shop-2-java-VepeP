@@ -1,11 +1,8 @@
 package com.codecool.shop.dao;
 
 import com.codecool.shop.model.CartProduct;
-import com.codecool.shop.model.Supplier;
-import com.codecool.shop.model.Product;
-import com.codecool.shop.model.ProductCategory;
 
-import java.util.HashMap;
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface CartDao {
@@ -19,5 +16,7 @@ public interface CartDao {
     void decreaseProductQuantity(int id);
 
     List<CartProduct> getAll();
+
+    BigDecimal getTotalPrice();
 
 }
