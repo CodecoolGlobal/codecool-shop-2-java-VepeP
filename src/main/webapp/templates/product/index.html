@@ -33,15 +33,66 @@
     <link rel="stylesheet" type="text/css" href="/static/css/wave.css" />
 
     <script src="/static/js/sorting.js" defer></script>
+    <script src="/static/js/addtocart.js" defer></script>
+    <script src="/static/js/viewcart.js" defer></script>
+
+    <script src="https://kit.fontawesome.com/450dc51bb0.js" crossorigin="anonymous"></script>
+
 
 
 </head>
 
 <body>
 
-<div class="jumbotron text-center">
-    <h1>Codecool Shop</h1>
+<div class="title">
+    <h1>Programming shop</h1>
+    <p>Hire awesome (or not that awesome) programmers from us!</p>
 </div>
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" id="viewcartbutton">  <i class="fas fa-shopping-cart"></i></button>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="container main-section">
+                <div class="row">
+                    <div class="col-lg-12 pb-2">
+                        <h4>Shoping Cart</h4>
+                    </div>
+                    <div class="col-lg-12 pl-3 pt-3">
+                        <table class="table table-hover border bg-white">
+                            <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th style="width:10%;">Quantity</th>
+                                <th>Subtotal</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody id="cartitemsplace">
+                            <tr>
+                                <td>cart empty
+                                </td>
+                            </tr>
+
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="2" class="hidden-xs"></td>
+                                <td class="hidden-xs text-center" style="width:10%;"><strong id="totalprice">Total :$0</strong></td>
+                                <td><a href="/payment" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="container">
 
@@ -84,7 +135,7 @@
                         <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
                     </div>
                     <div class="card-text">
-                        <a class="btn btn-success" href="#">Add to cart</a>
+                        <a class="btn btn-success cartbutton" th:data-id="${prod.getId()}" href="#">Add to cart</a>
                     </div>
                 </div>
             </div>
@@ -92,6 +143,8 @@
     </div>
 
 </div>
+
+
 
 <div th:replace="footer.html :: copy"></div>
 

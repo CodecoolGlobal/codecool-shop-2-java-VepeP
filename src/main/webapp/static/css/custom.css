@@ -90,4 +90,49 @@ body {
     font-size: 60px;
 }
 
+.img-responsive {
+    width: 100%;
+}
+
+#viewcartbutton{
+    float: right;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 60px;
+    font-size: 40px;
+    background: red;
+
+}
+
+.title {
+    width: 100%;
+    padding: 60px 0;
+    text-align: center;
+    color: white;
+}
+
+.title h1 {
+    font-size: 60px;
+    font-weight:  bold;
+}
+.title p {
+    font-size: 20px;
+    padding-bottom: 40px;
+    border-bottom: 5px solid white;
+}
+
+input[type="text"] {
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+::placeholder {
+    color: white;
+    opacity: 1;
+}
+
 
