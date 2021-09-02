@@ -80,7 +80,6 @@ public class CartDaoMem implements CartDao {
     public void set(int id, int amount) {
         if (amount > 0) {
             shoppingCart.put(id, amount);
-            System.out.println("miért vagyok itt?");
         } else {
             shoppingCart.remove(id);
         }
