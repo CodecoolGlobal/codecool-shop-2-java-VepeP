@@ -1,5 +1,8 @@
 package com.codecool.shop.datahandler;
 
+import com.codecool.shop.dao.CartDao;
+import com.codecool.shop.dao.implementation.CartDaoMem;
+import com.codecool.shop.model.CartProduct;
 import com.codecool.shop.model.Order;
 import com.codecool.shop.service.FileHandler;
 
@@ -12,37 +15,59 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.Properties;
 
 @WebServlet(name = "sendEmailServlet",
         urlPatterns = {"/sendEmail"})
-        //initParams = {@WebInitParam(name = "orderId", value = "")})
+//initParams = {@WebInitParam(name = "orderId", value = "")})
 public class SendEmailServlet extends HttpServlet {
 
     private static final String USER_NAME = "programmingshop2021";
     private static final String PASSWORD = "wertzuiop123456789";
 
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws FileNotFoundException {
 
         String orderId = request.getParameter("orderId");
-        System.out.println(orderId);
+
         if (orderId != null && !orderId.equals("")) {
             FileHandler fileHandler = new FileHandler();
             Order actOrder = fileHandler.getOrderFromFile(orderId);
+            CartDao cartDataStore = CartDaoMem.getInstance();
             String RECIPIENT = actOrder.getEmail();
-            System.out.println(RECIPIENT);
             String[] to = {RECIPIENT};
-            String subject = "Order " + orderId + " recipe";
-            String body = "Dear " + actOrder.getName() + "\n" +
-                    "Thank you for ordering from our shop, your purchase will be delivered to the given address in 3-5 days\n" +
-                    "Best regards,\n" +
-                    "Programming Shop";
+            String subject = "Order Confirmation (#" + orderId + ") from Programmer Shop";
+            String body = getEmailBody(orderId, actOrder, cartDataStore);
 
             sendFromGMail(to, subject, body);
+
+            cartDataStore.clearShoppingCart();
+            fileHandler.saveFile(fileHandler.exportCartDao(), fileHandler.getCartFile());
         }
     }
 
-    private static void sendFromGMail(String[] to, String subject, String body) {
+    private String getEmailBody(String orderId, Order actOrder, CartDao cartDataStore) {
+        StringBuilder emailBody = new StringBuilder("Dear " + actOrder.getName() + "!\n" +
+                "Your order has been received by Programmer shop.\n\n" +
+                "Order number: " + orderId + "\n" +
+                LocalDate.now() + "\n\n" +
+                "Deliver to: \n" +
+                actOrder.getName() + "\n" +
+                actOrder.getAddress() + "\n" +
+                actOrder.getCity() + "\n" +
+                actOrder.getState() + " " + actOrder.getZip() + "\n\n" +
+                "Products: " + "\n");
+        for (CartProduct cartProduct :
+                cartDataStore.getAll()) {
+            emailBody.append(cartProduct.getName()).append(" ").append(cartProduct.getQuantity())
+                    .append(" ").append(cartProduct.getDefaultPrice()).append("\n");
+        }
+        emailBody.append("\nBest regards,\n" + "Programming Shop");
+        return emailBody.toString();
+    }
+
+    private void sendFromGMail(String[] to, String subject, String body) {
         Properties props = System.getProperties();
         String host = "smtp.gmail.com";
 

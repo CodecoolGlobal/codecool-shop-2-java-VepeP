@@ -20,13 +20,13 @@ let payment = {
         this.initCheckoutButton();
     },
 
-    initCheckoutButton: function() {
+    initCheckoutButton: function () {
         let checkoutButton = document.querySelector('#checkout');
 
         checkoutButton.addEventListener('click', this.getFormData);
     },
 
-    getFormData: function() {
+    getFormData: function () {
         userData.name = document.querySelector('#fname').value;
         userData.email = document.querySelector('#email').value;
         userData.address = document.querySelector('#adr').value;
@@ -43,7 +43,7 @@ let payment = {
         payment.checkData();
     },
 
-    checkData: function() {
+    checkData: function () {
         let access = true;
 
         for (let data in userData) {
@@ -65,31 +65,32 @@ let payment = {
         if (access) payment.dataPost();
     },
 
-    sendEmail: function (order){
-        console.log(order);
-        console.log(order.id);
-        console.log(order[id]);
-        fetch("/sendEmail?orderId=" + order.id, {
-            method: 'GET',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json'
-            }})
-            .then();
-    },
-
-    dataPost: function() {
+    dataPost: function () {
         fetch("/user-data", {
             method: 'POST',
             credentials: 'same-origin',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(userData)})
+            body: JSON.stringify(userData)
+        })
             .then(response => response.json())
             .then(json_response => payment.sendEmail(json_response));
 
         window.location.href = "/";
+    },
+
+    sendEmail: function (order) {
+        console.log(order);
+        setTimeout(function () {
+            console.log(order);
+            console.log(order.id);
+        }, 3000);
+        fetch("/sendEmail?orderId=" + order.id, {
+            method: 'GET',
+            credentials: 'same-origin'
+        })
+            .then();
     }
 };
 
