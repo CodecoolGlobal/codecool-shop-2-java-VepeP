@@ -37,8 +37,6 @@ button.addEventListener("click", async () => {
         
         `
 
-        console.log(cartitemsHTML)
-
         document.getElementById("cartitemsplace").innerHTML = cartitemsHTML
         document.getElementById("totalprice").innerText="Total:  " + total
 

@@ -1,6 +1,5 @@
 document.querySelectorAll(".cartbutton").forEach(button => button.addEventListener("click", async ()=> {
     let id = button.dataset.id
-    console.log('heló')
     await addToCart(id)
 
 }))
