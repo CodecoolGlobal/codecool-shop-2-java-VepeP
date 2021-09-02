@@ -9,10 +9,10 @@
 		<url-pattern>/static/*</url-pattern>
 	</servlet-mapping>
 
-	<servlet>
+<!--	<servlet>
 		<servlet-name>SendEmailServlet</servlet-name>
 		<servlet-class>com.codecool.shop.datahandler.SendEmailServlet</servlet-class>
-	</servlet>
+	</servlet>-->
 
 <!--	<servlet-mapping>
 		<servlet-name>SendEmailServlet</servlet-name>

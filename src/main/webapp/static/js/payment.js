@@ -65,6 +65,19 @@ let payment = {
         if (access) payment.dataPost();
     },
 
+    sendEmail: function (order){
+        console.log(order);
+        console.log(order.id);
+        console.log(order[id]);
+        fetch("/sendEmail?orderId=" + order.id, {
+            method: 'GET',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            }})
+            .then();
+    },
+
     dataPost: function() {
         fetch("/user-data", {
             method: 'POST',
@@ -73,7 +86,8 @@ let payment = {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(userData)})
-            .then();
+            .then(response => response.json())
+            .then(json_response => payment.sendEmail(json_response));
 
         window.location.href = "/";
     }

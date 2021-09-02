@@ -1,5 +1,8 @@
 package com.codecool.shop.datahandler;
 
+import com.codecool.shop.model.Order;
+import com.codecool.shop.service.FileHandler;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -8,25 +11,32 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.FileNotFoundException;
 import java.util.Properties;
 
 @WebServlet(name = "sendEmailServlet",
-        urlPatterns = {"/sendEmail"},
-        initParams = {@WebInitParam(name = "orderId", value = "")})
+        urlPatterns = {"/sendEmail"})
+        //initParams = {@WebInitParam(name = "orderId", value = "")})
 public class SendEmailServlet extends HttpServlet {
 
     private static final String USER_NAME = "programmingshop2021";
     private static final String PASSWORD = "wertzuiop123456789";
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws FileNotFoundException {
 
         String orderId = request.getParameter("orderId");
+        System.out.println(orderId);
         if (orderId != null && !orderId.equals("")) {
-            // TODO get data from order #orderID.json file
-            String RECIPIENT = "programmingshop2021@gmail.com";
+            FileHandler fileHandler = new FileHandler();
+            Order actOrder = fileHandler.getOrderFromFile(orderId);
+            String RECIPIENT = actOrder.getEmail();
+            System.out.println(RECIPIENT);
             String[] to = {RECIPIENT};
-            String subject = "Java send mail example";
-            String body = "hi ....,!";
+            String subject = "Order " + orderId + " recipe";
+            String body = "Dear " + actOrder.getName() + "\n" +
+                    "Thank you for ordering from our shop, your purchase will be delivered to the given address in 3-5 days\n" +
+                    "Best regards,\n" +
+                    "Programming Shop";
 
             sendFromGMail(to, subject, body);
         }

@@ -8,11 +8,13 @@ import com.codecool.shop.dao.implementation.CartDaoMem;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
+import com.codecool.shop.model.Order;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.Objects;
 
@@ -81,5 +83,10 @@ public class FileHandler {
             if (listOfFiles[i].isFile() && listOfFiles[i].getName().contains("order")) nextOrderId += 1;
         }
         return nextOrderId;
+    }
+
+    public Order getOrderFromFile(String orderId) throws FileNotFoundException {
+        String orderFilePath = "src/main/resources/data/" + orderId + "_order.json";
+        return (new Gson().fromJson(new FileReader(orderFilePath), Order.class));
     }
 }
