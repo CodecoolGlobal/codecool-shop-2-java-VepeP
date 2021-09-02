@@ -14,6 +14,7 @@ import com.google.gson.GsonBuilder;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.Objects;
 
 public class FileHandler {
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -32,20 +33,24 @@ public class FileHandler {
         }
     }
 
-    public File getSupplierFile(){
+    public File getSupplierFile() {
         return new File("src/main/resources/data/suppliers.json");
     }
 
-    public File getCategoryFile(){
+    public File getCategoryFile() {
         return new File("src/main/resources/data/categories.json");
     }
 
-    public File getProductFile(){
+    public File getProductFile() {
         return new File("src/main/resources/data/products.json");
     }
 
-    public File getCartFile(){
+    public File getCartFile() {
         return new File("src/main/resources/data/shoppingCart.json");
+    }
+
+    public File getOrderFile(int orderNum) {
+        return new File("src/main/resources/data/" + orderNum + "_order.json");
     }
 
     public String exportProductDao() {
@@ -66,5 +71,15 @@ public class FileHandler {
     public String exportCartDao() {
         CartDao cartDataStore = CartDaoMem.getInstance();
         return gson.toJson(cartDataStore);
+    }
+
+    public int getNextOrderID() {
+        File folder = new File("src/main/resources/data");
+        File[] listOfFiles = folder.listFiles();
+        int nextOrderId = 1;
+        for (int i = 0; i < Objects.requireNonNull(listOfFiles).length; i++) {
+            if (listOfFiles[i].isFile() && listOfFiles[i].getName().contains("order")) nextOrderId += 1;
+        }
+        return nextOrderId;
     }
 }
