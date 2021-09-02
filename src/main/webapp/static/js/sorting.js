@@ -36,7 +36,7 @@ async function sort (type, id) {
                         <p class="lead">${item.defaultPrice} ${item.defaultCurrency}</p>
                     </div>
                     <div class="card-text">
-                        <a class="btn btn-success">Add to cart</a>
+                        <a class="btn btn-success cartbutton" data-id="${item.id}">Add to cart</a>
                     </div>
                 </div>
             </div>
@@ -46,6 +46,7 @@ async function sort (type, id) {
 
 
     items.innerHTML = itemsHTML
+    jQuery.getScript("/static/js/addtocart.js")
 
 }
 
