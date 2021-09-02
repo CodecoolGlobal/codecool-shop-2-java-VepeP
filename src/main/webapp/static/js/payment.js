@@ -25,6 +25,22 @@ let payment = {
         userData.city = document.querySelector('#city').value;
         userData.state = document.querySelector('#state').value;
         userData.zip = document.querySelector('#zip').value;
+
+        payment.checkData();
+    },
+
+    checkData: function() {
+        for (let data in userData) {
+            if (userData[data] === "") {
+                alert(`Please enter your ${data}`);
+                break;
+            }
+            else payment.dataPost();
+        }
+    },
+
+    dataPost: function() {
+
     }
 };
 
