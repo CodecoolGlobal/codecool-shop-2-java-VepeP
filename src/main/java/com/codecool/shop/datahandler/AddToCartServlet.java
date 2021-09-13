@@ -27,8 +27,6 @@ public class AddToCartServlet extends HttpServlet {
             ProductDao productDataStore = ProductDaoMem.getInstance();
             Product actProduct = productDataStore.find(productID);
 
-            System.out.println("item added to cart" + id);
-
             if (actProduct != null) {
                 cartDataStore.add(productID);
 

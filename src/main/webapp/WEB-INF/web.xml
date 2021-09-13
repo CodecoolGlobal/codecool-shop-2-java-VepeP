@@ -9,4 +9,13 @@
 		<url-pattern>/static/*</url-pattern>
 	</servlet-mapping>
 
+<!--	<servlet>
+		<servlet-name>SendEmailServlet</servlet-name>
+		<servlet-class>com.codecool.shop.datahandler.SendEmailServlet</servlet-class>
+	</servlet>-->
+
+<!--	<servlet-mapping>
+		<servlet-name>SendEmailServlet</servlet-name>
+		<url-pattern>/sendEmail</url-pattern>
+	</servlet-mapping>-->
 </web-app>
