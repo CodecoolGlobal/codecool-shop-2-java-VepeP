@@ -87,6 +87,7 @@ DROP TABLE IF EXISTS public.products_for_order;
 CREATE TABLE "products_for_order"
 (
     product_id integer NOT NULL,
+    quantity   integer,
     order_id   integer NOT NULL
 );
 

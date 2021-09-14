@@ -1,9 +1,12 @@
 package com.codecool.shop.datahandler;
 
 import com.codecool.shop.dao.CartDao;
+import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.implementation.CartDaoMem;
+import com.codecool.shop.manager.CodecoolShopDbManager;
 import com.codecool.shop.model.CartProduct;
 import com.codecool.shop.model.Product;
+import com.codecool.shop.model.ProductCategory;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -21,11 +24,16 @@ public class GetCartServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        CartDao cartDataStore = CartDaoMem.getInstance();
-        List<CartProduct> cartProductList = cartDataStore.getAll();
+        // CartDao cartDataStore = CartDaoMem.getInstance();
+        // List<CartProduct> cartProductList = cartDataStore.getAll();
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
+
+
+        CodecoolShopDbManager codecoolShopDbManager = new CodecoolShopDbManager();
+        CartDao cartDao = codecoolShopDbManager.getCartDao();
+        List<CartProduct> cartProductList = cartDao.getAll();
 
         PrintWriter out = response.getWriter();
         out.print(gson.toJson(cartProductList));

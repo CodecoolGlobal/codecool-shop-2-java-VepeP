@@ -20,9 +20,10 @@ public class CartDaoJdbc implements CartDao {
     @Override
     public void add(int id) {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "INSERT INTO shopping_cart (product_id, quantity) VALUES (?, 1)";
+            String sql = "INSERT INTO shopping_cart (product_id, quantity, user_id) VALUES (?, 1, ?)";
             PreparedStatement st = conn.prepareStatement(sql);
             st.setInt(1, id);
+            st.setInt(2, 1);
             st.executeUpdate();
         } catch (SQLException throwable) {
             throw new RuntimeException("Error while adding new product to shopping cart.", throwable);
