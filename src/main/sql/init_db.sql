@@ -1,5 +1,7 @@
 ALTER TABLE IF EXISTS ONLY public.shopping_cart
     DROP CONSTRAINT IF EXISTS fk_product_id CASCADE;
+ALTER TABLE IF EXISTS ONLY public.shopping_cart
+    DROP CONSTRAINT IF EXISTS fk_user_id CASCADE;
 ALTER TABLE IF EXISTS ONLY public.products_for_order
     DROP CONSTRAINT IF EXISTS fk_product_id CASCADE;
 ALTER TABLE IF EXISTS ONLY public.product
@@ -67,6 +69,7 @@ DROP TABLE IF EXISTS public.shopping_cart;
 CREATE TABLE shopping_cart
 (
     product_id integer NOT NULL,
+    user_id    integer NOT NULL,
     quantity   integer
 );
 
@@ -125,6 +128,11 @@ ALTER TABLE ONLY "user"
 
 ALTER TABLE ONLY shopping_cart
     ADD CONSTRAINT fk_product_id FOREIGN KEY (product_id) REFERENCES product (id) ON
+        DELETE
+        CASCADE;
+
+ALTER TABLE ONLY shopping_cart
+    ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES "user" (id) ON
         DELETE
         CASCADE;
 

@@ -42,7 +42,7 @@ public class SendEmailServlet extends HttpServlet {
 
             sendFromGMail(to, subject, body);
 
-            cartDataStore.clearShoppingCart();
+            cartDataStore.clearShoppingCart(1);
             fileHandler.saveFile(fileHandler.exportCartDao(), fileHandler.getCartFile());
         }
     }

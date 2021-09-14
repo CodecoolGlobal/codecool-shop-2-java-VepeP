@@ -11,7 +11,7 @@ import java.util.Currency;
 import java.util.List;
 
 public class CartDaoJdbc implements CartDao {
-    private DataSource dataSource;
+    private final DataSource dataSource;
 
     public CartDaoJdbc(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -95,10 +95,11 @@ public class CartDaoJdbc implements CartDao {
     }
 
     @Override
-    public void clearShoppingCart() {
+    public void clearShoppingCart(int userID) {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "DELETE FROM shopping_cart";
+            String sql = "DELETE FROM shopping_cart WHERE user_id = ?";
             PreparedStatement st = conn.prepareStatement(sql);
+            st.setInt(1, userID);
             st.executeUpdate();
         } catch (SQLException throwable) {
             throw new RuntimeException("Error while deleting all product from shopping cart.", throwable);

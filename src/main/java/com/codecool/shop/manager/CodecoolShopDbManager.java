@@ -16,7 +16,7 @@ public class CodecoolShopDbManager {
     public void run() {
         try {
             setup();
-        } catch (SQLException throwables) {
+        } catch (SQLException throwable) {
             System.err.println("Could not connect to the database.");
             System.exit(-1);
         }
