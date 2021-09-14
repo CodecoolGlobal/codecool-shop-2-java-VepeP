@@ -1,9 +1,16 @@
 package com.codecool.shop.model;
 
 
+import com.codecool.shop.datahandler.UserDataServlet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.lang.reflect.Field;
 
+
 public class BaseModel {
+
+    private static final Logger logger = LoggerFactory.getLogger(BaseModel.class);
 
     protected int id;
     protected String name;
@@ -60,8 +67,9 @@ public class BaseModel {
                 if (value != null) {
                     sb.append(field.getName() + ":" + value + ",");
                 }
+                logger.info(field.getName() + ":" + value + ", appended");
             } catch (IllegalAccessException e) {
-
+                logger.error("IllegalAccessException when trying to append!");
             }
         }
         return sb.toString();

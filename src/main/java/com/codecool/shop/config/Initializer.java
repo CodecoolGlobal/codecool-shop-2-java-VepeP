@@ -18,9 +18,13 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import java.io.*;
 import java.math.BigDecimal;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebListener
 public class Initializer implements ServletContextListener {
+
+    private static final Logger logger = LoggerFactory.getLogger(Initializer.class);
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -30,22 +34,30 @@ public class Initializer implements ServletContextListener {
         String cartFilePath = "src/main/resources/data/shoppingCart.json";
         try {
             SupplierDaoMem.setInstance(new Gson().fromJson(new FileReader(supplierFilePath), SupplierDaoMem.class));
+            logger.info("File " + supplierFilePath + " initialized successfully");
         } catch (FileNotFoundException e) {
+            logger.error("File " + supplierFilePath + " not found!");
             e.printStackTrace();
         }
         try {
             ProductCategoryDaoMem.setInstance(new Gson().fromJson(new FileReader(categoriesFilePath), ProductCategoryDaoMem.class));
+            logger.info("File " + categoriesFilePath + " initialized successfully");
         } catch (FileNotFoundException e) {
+            logger.error("File " + categoriesFilePath + " not found!");
             e.printStackTrace();
         }
         try {
             ProductDaoMem.setInstance(new Gson().fromJson(new FileReader(productsFilePath), ProductDaoMem.class));
+            logger.info("File " + productsFilePath + " initialized successfully");
         } catch (FileNotFoundException e) {
+            logger.error("File " + productsFilePath + " not found!");
             e.printStackTrace();
         }
         try {
             CartDaoMem.setInstance(new Gson().fromJson(new FileReader(cartFilePath), CartDaoMem.class));
+            logger.info("File " + cartFilePath + " initialized successfully");
         } catch (FileNotFoundException e) {
+            logger.error("File " + cartFilePath + " not found!");
             e.printStackTrace();
         }
 

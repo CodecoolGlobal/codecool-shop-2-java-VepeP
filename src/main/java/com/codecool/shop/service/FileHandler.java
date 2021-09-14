@@ -8,6 +8,7 @@ import com.codecool.shop.dao.implementation.CartDaoMem;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
+import com.codecool.shop.datahandler.UserDataServlet;
 import com.codecool.shop.model.Order;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -17,8 +18,13 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.Objects;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class FileHandler {
+
+    private static final Logger logger = LoggerFactory.getLogger(FileHandler.class);
+
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public FileHandler() {
@@ -30,7 +36,9 @@ public class FileHandler {
             writer = new PrintWriter(file);
             writer.println(content);
             writer.close();
+            logger.info("File saved with content: " + content);
         } catch (FileNotFoundException fileNotFoundException) {
+            logger.error("Could not find file!");
             fileNotFoundException.printStackTrace();
         }
     }

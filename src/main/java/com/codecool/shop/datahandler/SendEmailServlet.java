@@ -17,12 +17,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.Properties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebServlet(name = "sendEmailServlet",
         urlPatterns = {"/sendEmail"})
 //initParams = {@WebInitParam(name = "orderId", value = "")})
 public class SendEmailServlet extends HttpServlet {
 
+    private static final Logger logger = LoggerFactory.getLogger(SendEmailServlet.class);
     private static final String USER_NAME = "programmingshop2021";
     private static final String PASSWORD = "wertzuiop123456789";
 
@@ -107,8 +110,9 @@ public class SendEmailServlet extends HttpServlet {
             transport.connect(host, SendEmailServlet.USER_NAME, SendEmailServlet.PASSWORD);
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
-
+            logger.info("E-mail sent!");
         } catch (MessagingException ae) {
+            logger.error("Could not send E-mail!");
             ae.printStackTrace();
         }
     }
