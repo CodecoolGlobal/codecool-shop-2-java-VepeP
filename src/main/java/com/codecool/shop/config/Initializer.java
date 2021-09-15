@@ -18,6 +18,8 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import java.io.*;
 import java.math.BigDecimal;
+import java.util.Properties;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -60,6 +62,8 @@ public class Initializer implements ServletContextListener {
             logger.error("File " + cartFilePath + " not found!");
             e.printStackTrace();
         }
+
+        System.out.println(Parameters.getDBMethod());
 
         //SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
         //ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
