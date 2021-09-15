@@ -39,7 +39,7 @@ public class SendEmailServlet extends HttpServlet {
             Order actOrder = fileHandler.getOrderFromFile(orderId);
             //CartDao cartDataStore = CartDaoMem.getInstance();
             CartDao cartDataStore = codecoolShopDbManager.getCartDao();
-            String RECIPIENT = actOrder.getEmail();
+            String RECIPIENT = USER_NAME + "@gmail.com"; //actOrder.getEmail();
             String[] to = {RECIPIENT};
             String subject = "Order Confirmation (#" + orderId + ") from Programmer Shop";
             String body = getEmailBody(orderId, actOrder, cartDataStore);
@@ -52,15 +52,15 @@ public class SendEmailServlet extends HttpServlet {
     }
 
     private String getEmailBody(String orderId, Order actOrder, CartDao cartDataStore) {
-        StringBuilder emailBody = new StringBuilder("Dear " + actOrder.getName() + "!\n" +
+        StringBuilder emailBody = new StringBuilder("Dear " + /*actOrder.getName() +*/ "!\n" +
                 "Your order has been received by Programmer shop.\n\n" +
                 "Order number: " + orderId + "\n" +
                 LocalDate.now() + "\n\n" +
                 "Deliver to: \n" +
-                actOrder.getName() + "\n" +
-                actOrder.getAddress() + "\n" +
-                actOrder.getCity() + "\n" +
-                actOrder.getState() + " " + actOrder.getZip() + "\n\n" +
+                /*actOrder.getName() + "\n" +*/
+                /*actOrder.getAddress() + "\n" +*/
+                /*actOrder.getCity() + "\n" +*/
+                /*actOrder.getState() + " " + actOrder.getZip() + "\n\n" +*/
                 "Products: " + "\n");
         for (CartProduct cartProduct :
                 cartDataStore.getAll()) {
