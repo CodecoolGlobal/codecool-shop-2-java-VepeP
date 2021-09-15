@@ -1,5 +1,6 @@
 package com.codecool.shop.manager;
 
+import com.codecool.shop.config.Parameters;
 import com.codecool.shop.dao.*;
 import com.codecool.shop.dao.implementation.CartDaoJdbc;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoJdbc;
@@ -72,9 +73,9 @@ public class CodecoolShopDbManager {
 
     private DataSource connect() throws SQLException {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
-        dataSource.setDatabaseName("codecoolshop");
-        dataSource.setUser("postgres");
-        dataSource.setPassword("admin");
+        dataSource.setDatabaseName(Parameters.getDBName());
+        dataSource.setUser(Parameters.getUser());
+        dataSource.setPassword(Parameters.getPW());
 
         System.out.println("Trying to connect...");
         dataSource.getConnection().close();
