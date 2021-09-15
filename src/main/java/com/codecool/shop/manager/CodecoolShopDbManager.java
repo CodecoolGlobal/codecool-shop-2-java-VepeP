@@ -5,11 +5,14 @@ import com.codecool.shop.dao.implementation.CartDaoJdbc;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoJdbc;
 import com.codecool.shop.dao.implementation.ProductDaoJdbc;
 import com.codecool.shop.dao.implementation.SupplierDaoJdbc;
+import com.codecool.shop.datahandler.UserDataServlet;
 import com.codecool.shop.model.Supplier;
 import org.postgresql.ds.PGSimpleDataSource;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CodecoolShopDbManager {
     CartDao cartDao;
@@ -19,6 +22,8 @@ public class CodecoolShopDbManager {
     OrderDao orderDao;
     ProductForOrderDao productForOrderDao;
 
+    private static final Logger logger = LoggerFactory.getLogger(CodecoolShopDbManager.class);
+
     public CodecoolShopDbManager() {
         this.run();
     }
@@ -26,8 +31,9 @@ public class CodecoolShopDbManager {
     private void run() {
         try {
             setup();
+            logger.info("Database connection OK");
         } catch (SQLException throwable) {
-            System.err.println("Could not connect to the database.");
+            logger.error("Could not connect to the database.");
             System.exit(-1);
         }
     }
