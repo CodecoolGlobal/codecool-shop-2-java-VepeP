@@ -7,6 +7,7 @@ import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
 import com.codecool.shop.config.TemplateEngineUtil;
+import com.codecool.shop.manager.CodecoolShopDbManager;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -22,6 +23,8 @@ public class ProductController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        CodecoolShopDbManager codecoolShopDbManager = new CodecoolShopDbManager();
+
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
         //ProductService productService = new ProductService(productDataStore, productCategoryDataStore);
@@ -29,9 +32,14 @@ public class ProductController extends HttpServlet {
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
-        context.setVariable("suppliers", productSupplierDataStore.getAll());
-        context.setVariable("categories", productCategoryDataStore.getAll());
-        context.setVariable("products", productDataStore.getAll());
+
+        // context.setVariable("suppliers", productSupplierDataStore.getAll());
+        // context.setVariable("categories", productCategoryDataStore.getAll());
+        // context.setVariable("products", productDataStore.getAll());
+
+        context.setVariable("suppliers", codecoolShopDbManager.getSupplierDao().getAll());
+        context.setVariable("categories", codecoolShopDbManager.getProductCategoryDao().getAll());
+        context.setVariable("products", codecoolShopDbManager.getProductDao().getAll());
 
         // // Alternative setting of the template context
         // Map<String, Object> params = new HashMap<>();

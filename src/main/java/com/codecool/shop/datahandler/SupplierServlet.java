@@ -1,10 +1,13 @@
 package com.codecool.shop.datahandler;
 
+import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
+import com.codecool.shop.manager.CodecoolShopDbManager;
 import com.codecool.shop.model.Product;
+import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 import com.google.gson.Gson;
 
@@ -30,7 +33,11 @@ public class SupplierServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         int id = Integer.parseInt(request.getParameter("id"));
-        Supplier supplier = productSupplierDataStore.find(id);
+        //Supplier supplier = productSupplierDataStore.find(id);
+
+        CodecoolShopDbManager codecoolShopDbManager = new CodecoolShopDbManager();
+        SupplierDao supplierDao = codecoolShopDbManager.getSupplierDao();
+        Supplier supplier = supplierDao.find(id);
 
         PrintWriter out = response.getWriter();
         out.println(gson.toJson(productDataStore.getBy(supplier)));

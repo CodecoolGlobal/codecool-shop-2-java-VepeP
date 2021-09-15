@@ -1,5 +1,8 @@
 package com.codecool.shop.datahandler;
 
+import com.codecool.shop.dao.OrderDao;
+import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.manager.CodecoolShopDbManager;
 import com.codecool.shop.service.FileHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,6 +44,10 @@ public class UserDataServlet extends HttpServlet {
 
         FileHandler fileHandler = new FileHandler();
         int nextOrderId = fileHandler.getNextOrderID();
+
+        CodecoolShopDbManager codecoolShopDbManager = new CodecoolShopDbManager();
+        // OrderDao orderDao = codecoolShopDbManager.getOrderDao();
+
         fileHandler.saveFile(jsonString.toString(), fileHandler.getOrderFile(nextOrderId));
 
         PrintWriter out = response.getWriter();
