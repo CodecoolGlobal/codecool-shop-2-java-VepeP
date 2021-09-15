@@ -1,9 +1,12 @@
 package com.codecool.shop.datahandler;
 
+import com.codecool.shop.dao.CartDao;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
+import com.codecool.shop.dao.implementation.ProductCategoryDaoJdbc;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
+import com.codecool.shop.manager.CodecoolShopDbManager;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.google.gson.Gson;
@@ -29,9 +32,14 @@ public class CategoryServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         int id = Integer.parseInt(request.getParameter("id"));
-        ProductCategory category = productCategoryDataStore.find(id);
+        // ProductCategory category = productCategoryDataStore.find(id);
+
+        CodecoolShopDbManager codecoolShopDbManager = new CodecoolShopDbManager();
+        ProductCategoryDao productCategoryDao = codecoolShopDbManager.getProductCategoryDao();
+        ProductCategory category = productCategoryDao.find(id);
 
         PrintWriter out = response.getWriter();
-        out.println(gson.toJson(productDataStore.getBy(category)));
+        // out.println(gson.toJson(productDataStore.getBy(category)));
+        out.println(gson.toJson(codecoolShopDbManager.getProductDao().getBy(category)));
     }
 }

@@ -1,7 +1,9 @@
 package com.codecool.shop.datahandler;
 
 import com.codecool.shop.dao.CartDao;
+import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.CartDaoMem;
+import com.codecool.shop.manager.CodecoolShopDbManager;
 import com.codecool.shop.model.CartProduct;
 import com.codecool.shop.model.Order;
 import com.codecool.shop.service.FileHandler;
@@ -32,31 +34,33 @@ public class SendEmailServlet extends HttpServlet {
         String orderId = request.getParameter("orderId");
 
         if (orderId != null && !orderId.equals("")) {
+            CodecoolShopDbManager codecoolShopDbManager = new CodecoolShopDbManager();
             FileHandler fileHandler = new FileHandler();
             Order actOrder = fileHandler.getOrderFromFile(orderId);
-            CartDao cartDataStore = CartDaoMem.getInstance();
-            String RECIPIENT = actOrder.getEmail();
+            //CartDao cartDataStore = CartDaoMem.getInstance();
+            CartDao cartDataStore = codecoolShopDbManager.getCartDao();
+            String RECIPIENT = USER_NAME + "@gmail.com"; //actOrder.getEmail();
             String[] to = {RECIPIENT};
             String subject = "Order Confirmation (#" + orderId + ") from Programmer Shop";
             String body = getEmailBody(orderId, actOrder, cartDataStore);
 
             sendFromGMail(to, subject, body);
 
-            cartDataStore.clearShoppingCart();
+            cartDataStore.clearShoppingCart(1);
             fileHandler.saveFile(fileHandler.exportCartDao(), fileHandler.getCartFile());
         }
     }
 
     private String getEmailBody(String orderId, Order actOrder, CartDao cartDataStore) {
-        StringBuilder emailBody = new StringBuilder("Dear " + actOrder.getName() + "!\n" +
+        StringBuilder emailBody = new StringBuilder("Dear " + /*actOrder.getName() +*/ "!\n" +
                 "Your order has been received by Programmer shop.\n\n" +
                 "Order number: " + orderId + "\n" +
                 LocalDate.now() + "\n\n" +
                 "Deliver to: \n" +
-                actOrder.getName() + "\n" +
-                actOrder.getAddress() + "\n" +
-                actOrder.getCity() + "\n" +
-                actOrder.getState() + " " + actOrder.getZip() + "\n\n" +
+                /*actOrder.getName() + "\n" +*/
+                /*actOrder.getAddress() + "\n" +*/
+                /*actOrder.getCity() + "\n" +*/
+                /*actOrder.getState() + " " + actOrder.getZip() + "\n\n" +*/
                 "Products: " + "\n");
         for (CartProduct cartProduct :
                 cartDataStore.getAll()) {

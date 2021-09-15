@@ -1,80 +1,72 @@
 package com.codecool.shop.model;
 
+import java.util.Date;
+import java.util.List;
+
 public class Order {
 
-    private String name;
-    private String email;
-    private String address;
-    private String city;
-    private String state;
-    private String zip;
+    private int user_id;
+    private int total_price;
+    private String order_status;
+    private Date order_date;
+    private List<Product> products;
 
-    public Order(String name, String email, String address, String city, String state, String zip) {
-        this.name = name;
-        this.email = email;
-        this.address = address;
-        this.city = city;
-        this.state = state;
-        this.zip = zip;
+    public Order(int user_id, int total_price, String order_status, Date order_date, List<Product> products) {
+        this.user_id = user_id;
+        this.total_price = total_price;
+        this.order_status = order_status;
+        this.order_date = order_date;
+        this.products = products;
     }
 
-    public String getName() {
-        return name;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
-    public String getEmail() {
-        return email;
+    public int getTotal_price() {
+        return total_price;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setTotal_price(int total_price) {
+        this.total_price = total_price;
     }
 
-    public String getAddress() {
-        return address;
+    public String getOrder_status() {
+        return order_status;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setOrder_status(String order_status) {
+        this.order_status = order_status;
     }
 
-    public String getCity() {
-        return city;
+    public Date getOrder_date() {
+        return order_date;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setOrder_date(Date order_date) {
+        this.order_date = order_date;
     }
 
-    public String getState() {
-        return state;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getZip() {
-        return zip;
-    }
-
-    public void setZip(String zip) {
-        this.zip = zip;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     @Override
     public String toString() {
         return "Order{" +
-                "name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", zip='" + zip + '\'' +
+                "user_id=" + user_id +
+                ", total_price=" + total_price +
+                ", order_status='" + order_status + '\'' +
+                ", order_date=" + order_date +
+                ", products=" + products +
                 '}';
     }
 }

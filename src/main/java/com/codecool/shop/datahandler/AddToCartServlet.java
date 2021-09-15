@@ -4,6 +4,7 @@ import com.codecool.shop.dao.CartDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.implementation.CartDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
+import com.codecool.shop.manager.CodecoolShopDbManager;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.service.FileHandler;
 
@@ -23,15 +24,19 @@ public class AddToCartServlet extends HttpServlet {
         if (id != null) {
             int productID = Integer.parseInt(id);
 
-            CartDao cartDataStore = CartDaoMem.getInstance();
-            ProductDao productDataStore = ProductDaoMem.getInstance();
-            Product actProduct = productDataStore.find(productID);
+            // CartDao cartDataStore = CartDaoMem.getInstance();
+            // ProductDao productDataStore = ProductDaoMem.getInstance();
+            // Product actProduct = productDataStore.find(productID);
+
+            CodecoolShopDbManager codecoolShopDbManager = new CodecoolShopDbManager();
+            CartDao cartDao = codecoolShopDbManager.getCartDao();
+            Product actProduct = codecoolShopDbManager.getProductDao().find(productID);
 
             if (actProduct != null) {
-                cartDataStore.add(productID);
+                cartDao.add(productID);
 
-                FileHandler fileHandler = new FileHandler();
-                fileHandler.saveFile(fileHandler.exportCartDao(), fileHandler.getCartFile());
+                // FileHandler fileHandler = new FileHandler();
+                // fileHandler.saveFile(fileHandler.exportCartDao(), fileHandler.getCartFile());
             }
         }
     }
