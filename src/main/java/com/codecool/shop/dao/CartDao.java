@@ -19,5 +19,5 @@ public interface CartDao {
 
     BigDecimal getTotalPrice();
 
-    void clearShoppingCart();
+    void clearShoppingCart(int userID);
 }

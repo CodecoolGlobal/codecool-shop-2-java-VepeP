@@ -1,7 +1,9 @@
 package com.codecool.shop.datahandler;
 
 import com.codecool.shop.dao.CartDao;
+import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.CartDaoMem;
+import com.codecool.shop.manager.CodecoolShopDbManager;
 import com.codecool.shop.model.CartProduct;
 import com.codecool.shop.model.Order;
 import com.codecool.shop.service.FileHandler;
@@ -32,9 +34,11 @@ public class SendEmailServlet extends HttpServlet {
         String orderId = request.getParameter("orderId");
 
         if (orderId != null && !orderId.equals("")) {
+            CodecoolShopDbManager codecoolShopDbManager = new CodecoolShopDbManager();
             FileHandler fileHandler = new FileHandler();
             Order actOrder = fileHandler.getOrderFromFile(orderId);
-            CartDao cartDataStore = CartDaoMem.getInstance();
+            //CartDao cartDataStore = CartDaoMem.getInstance();
+            CartDao cartDataStore = codecoolShopDbManager.getCartDao();
             String RECIPIENT = actOrder.getEmail();
             String[] to = {RECIPIENT};
             String subject = "Order Confirmation (#" + orderId + ") from Programmer Shop";
@@ -42,7 +46,7 @@ public class SendEmailServlet extends HttpServlet {
 
             sendFromGMail(to, subject, body);
 
-            cartDataStore.clearShoppingCart();
+            cartDataStore.clearShoppingCart(1);
             fileHandler.saveFile(fileHandler.exportCartDao(), fileHandler.getCartFile());
         }
     }
