@@ -25,22 +25,12 @@ class CartTest {
     }
 
     @Test
-    void increaseCartItemQuantityTest() {
+    void addItemToCartTest(){
+        int numberOfItemInCar = cartContent.size();
         cart.addToCart(product);
-        int cartSizeBefore = 1;
-        cart.increaseProductQuantity(product);
-        assertNotEquals(cartSizeBefore, cartContent.get(product));
+        assertNotEquals(numberOfItemInCar,cartContent.size());
     }
 
-    @Test
-    void increaseCartSizeWithNewItemTest() {
-        cart.addToCart(product);
-        Product product2 = Mockito.mock(Product.class);
-        int cartSizeBefore = cartContent.size();
-        cart.addToCart(product2);
-        cart.increaseProductQuantity(product);
-        assertNotEquals(cartSizeBefore, cartContent.size());
-    }
 
     @Test
     void removeFromExistingProductFromCart() {
