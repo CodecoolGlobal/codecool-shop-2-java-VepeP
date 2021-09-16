@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class Cart {
     private static HashMap<Product, Integer> shoppingCart = null;
 
-    private Cart() {
+    public Cart() {
     }
 
     public static HashMap<Product, Integer> getInstance() {
@@ -22,7 +22,7 @@ public class Cart {
         shoppingCart.remove(product);
     }
 
-    private void increaseProductQuantity(Product product) {
+    public void increaseProductQuantity(Product product) {
         Integer quantity = shoppingCart.get(product);
         if (quantity != null) shoppingCart.put(product, ++quantity);
     }
