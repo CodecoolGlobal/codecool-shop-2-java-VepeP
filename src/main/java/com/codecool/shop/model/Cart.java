@@ -22,7 +22,7 @@ public class Cart {
         shoppingCart.remove(product);
     }
 
-    public void increaseProductQuantity(Product product) {
+    private void increaseProductQuantity(Product product) {
         Integer quantity = shoppingCart.get(product);
         if (quantity != null) shoppingCart.put(product, ++quantity);
     }
