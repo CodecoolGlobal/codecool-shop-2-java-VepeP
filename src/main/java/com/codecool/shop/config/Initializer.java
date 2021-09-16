@@ -18,9 +18,15 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import java.io.*;
 import java.math.BigDecimal;
+import java.util.Properties;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebListener
 public class Initializer implements ServletContextListener {
+
+    private static final Logger logger = LoggerFactory.getLogger(Initializer.class);
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -30,24 +36,34 @@ public class Initializer implements ServletContextListener {
         String cartFilePath = "src/main/resources/data/shoppingCart.json";
         try {
             SupplierDaoMem.setInstance(new Gson().fromJson(new FileReader(supplierFilePath), SupplierDaoMem.class));
+            logger.info("File " + supplierFilePath + " initialized successfully");
         } catch (FileNotFoundException e) {
+            logger.error("File " + supplierFilePath + " not found!");
             e.printStackTrace();
         }
         try {
             ProductCategoryDaoMem.setInstance(new Gson().fromJson(new FileReader(categoriesFilePath), ProductCategoryDaoMem.class));
+            logger.info("File " + categoriesFilePath + " initialized successfully");
         } catch (FileNotFoundException e) {
+            logger.error("File " + categoriesFilePath + " not found!");
             e.printStackTrace();
         }
         try {
             ProductDaoMem.setInstance(new Gson().fromJson(new FileReader(productsFilePath), ProductDaoMem.class));
+            logger.info("File " + productsFilePath + " initialized successfully");
         } catch (FileNotFoundException e) {
+            logger.error("File " + productsFilePath + " not found!");
             e.printStackTrace();
         }
         try {
             CartDaoMem.setInstance(new Gson().fromJson(new FileReader(cartFilePath), CartDaoMem.class));
+            logger.info("File " + cartFilePath + " initialized successfully");
         } catch (FileNotFoundException e) {
+            logger.error("File " + cartFilePath + " not found!");
             e.printStackTrace();
         }
+
+        System.out.println(Parameters.getDBMethod());
 
         //SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
         //ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
@@ -67,15 +83,15 @@ public class Initializer implements ServletContextListener {
 //
         ////setting up products and printing it
         //productDataStore.add(new Product("Peti", new BigDecimal("250"), "USD", "_", personal, codeCool));
-        //productDataStore.add(new Product("Saz", new BigDecimal("150"), "EUR", "_", personal, codeCool));
+        //productDataStore.add(new Product("Saz", new BigDecimal("150"), "USD", "_", personal, codeCool));
         //productDataStore.add(new Product("Mate", new BigDecimal("100"), "USD", "_", personal, codeCool));
         //productDataStore.add(new Product("Ichy", new BigDecimal("100"), "USD", " ", personal, codeCool));
-        //productDataStore.add(new Product("Balazs", new BigDecimal("250"), "HUF", " ", personal, codeCool));
-        //productDataStore.add(new Product("Martin", new BigDecimal("5"), "EUR", " ", personal, greenFox));
+        //productDataStore.add(new Product("Balazs", new BigDecimal("250"), "USD", " ", personal, codeCool));
+        //productDataStore.add(new Product("Martin", new BigDecimal("5"), "USD", " ", personal, greenFox));
         //productDataStore.add(new Product("Eric Cartman", new BigDecimal("300"), "USD", " ", personal, greenFox));
         //productDataStore.add(new Product("Kenny McCormick", new BigDecimal("10"), "USD", " ", personal, greenFox));
-        //productDataStore.add(new Product("ProgramING shop", new BigDecimal("800"), "EUR", " ", team, codeCool));
-        //productDataStore.add(new Product("No IDEa", new BigDecimal("500"), "HUF", " ", team, greenFox));
+        //productDataStore.add(new Product("ProgramING shop", new BigDecimal("800"), "USD", " ", team, codeCool));
+        //productDataStore.add(new Product("No IDEa", new BigDecimal("500"), "USD", " ", team, greenFox));
 //
         //FileHandler fileHandler = new FileHandler();
         //fileHandler.saveFile(fileHandler.exportSupplierDao(), fileHandler.getSupplierFile());

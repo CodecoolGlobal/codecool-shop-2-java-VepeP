@@ -108,7 +108,7 @@ public class CartDaoMem implements CartDao {
     }
 
     @Override
-    public void clearShoppingCart() {
+    public void clearShoppingCart(int userID) {
         shoppingCart.clear();
     }
 }
