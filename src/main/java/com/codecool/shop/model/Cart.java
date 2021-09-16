@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class Cart {
     private static HashMap<Product, Integer> shoppingCart = null;
 
-    private Cart() {
+    public Cart() {
     }
 
     public static HashMap<Product, Integer> getInstance() {
