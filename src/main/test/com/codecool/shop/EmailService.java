@@ -6,28 +6,31 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class EmailService extends HomePage{
-    final String address = "deeznutsshop666@gmail.com";
-    final String pw = "nuclearkernel";
-    @FindBy(xpath = "//input[@aria-label='E-mail-cím vagy telefonszám']") WebElement email;
-    @FindBy(xpath = "//input[@aria-label='Adja meg jelszavát']") WebElement password;
-    @FindBy(xpath = "//span[.='Következő']") WebElement next;
+    final String address = "cicamica6667";
+    final String pw = "MicaCica7";
+    @FindBy(xpath = "//input[@name='user']") WebElement email;
+    @FindBy(xpath = "//input[@name='passwd']") WebElement password;
+    @FindBy(xpath = "//button[.='Belépés']") WebElement next;
 
     public EmailService() {
         super();
     }
 
     public void login() {
-        driver.get("https://accounts.google.com/signin/v2/identifier?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ss=1&scc=1&ltmpl=default&ltmplcache=2&flowName=GlifWebSignIn&flowEntry=ServiceLogin");
+        driver.get("https://www.citromail.hu");
+        driver.manage().window().maximize();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@aria-label='ELFOGADOM']"))).click();
         email.sendKeys(address);
-        next.click();
         password.sendKeys(pw);
         next.click();
     }
 
     public void checkLatestMail() {
         login();
-        WebElement latestMail = driver.findElement(By.xpath("//table[@aria-readonly='true']//tr[1]"));
-        wait.until(ExpectedConditions.elementToBeClickable(latestMail)).click();
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//div[@class='formInline'][@title='Programmer Shop <programmingshop2021@gmail.com>'][1]"))));
+        WebElement latestMail = driver.findElement(By.xpath("//div[@class='mail-list-row-container read ']//div[@class='drag unr mail-list-row '][1]"));
+        wait.until(ExpectedConditions.elementToBeClickable(latestMail));
+        latestMail.click();
     }
 
 
