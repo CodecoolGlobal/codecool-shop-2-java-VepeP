@@ -12,52 +12,58 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.internal.matchers.Null;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class ProductServiceTest {
-    ProductDao productDao;
-    Product product;
-    ProductCategoryDao productCategoryDao;
-    ProductCategory productCategory;
     ProductService productService;
-    Supplier supplier;
-
+    ProductCategory productCategory;
+    ProductCategoryDaoMem productCategoryDaoMem;
+    ProductDaoMem productDaoMem;
+    Product product;
 
     @BeforeEach
-    public void init() {
-        productDao = ProductDaoMem.getInstance();
-        product = mock(Product.class);
-        supplier = mock(Supplier.class);
-        productCategory = new ProductCategory(1,"Test","TestDB","Desc");
-        productCategoryDao = ProductCategoryDaoMem.getInstance();
-        productService = new ProductService(productDao,productCategoryDao);
+    void init() {
+        productDaoMem = Mockito.mock(ProductDaoMem.class);
+        productCategoryDaoMem = Mockito.mock(ProductCategoryDaoMem.class);
+        productCategory = Mockito.mock(ProductCategory.class);
+        product = Mockito.mock(Product.class);
+        productService = new ProductService(productDaoMem, productCategoryDaoMem);
     }
 
     @Test
-    void productDaoAddTest() {
-        assertDoesNotThrow(() -> productDao.add(product));
+    void getProductCategoryNotNullTest() {
+        when(productCategoryDaoMem.find(anyInt())).thenReturn(productCategory);
+        assertNotNull(productService.getProductCategory(1));
     }
 
     @Test
-    void productDaoGetAllTest() {
-        productDao.add(product);
-        assertFalse(productDao.getAll().isEmpty());
+    void getProductCategoryNullTest() {
+        assertNull(productService.getProductCategory(0));
     }
 
     @Test
-    void productCategoryGet() {
-        productCategoryDao.add(productCategory);
-        assertDoesNotThrow(()->productService.getProductCategory(1));
-    }
-    @Test
-    void getProductsForCategoryTest(){
-        Product noMockProduct = new Product(1,"Item",new BigDecimal("100"),"HUF","Desc",productCategory,supplier);
-        productDao.add(noMockProduct);
+    void getProductsForCategoryNotNullListTest() {
+        List<Product> p = new ArrayList<>();
+        p.add(product);
+        when(productCategoryDaoMem.find(anyInt())).thenReturn(productCategory);
+        when(productDaoMem.getBy(productCategory)).thenReturn(p);
         assertFalse(productService.getProductsForCategory(1).isEmpty());
     }
+    @Test
+    void getProductsForCategoryNullListTest() {
+        when(productCategoryDaoMem.find(anyInt())).thenReturn(productCategory);
+        when(productDaoMem.getBy(productCategory)).thenReturn(new ArrayList<>());
+        assertTrue(productService.getProductsForCategory(1).isEmpty());
+    }
 
-}
+    }
