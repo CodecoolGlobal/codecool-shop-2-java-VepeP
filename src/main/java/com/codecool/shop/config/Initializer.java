@@ -83,15 +83,15 @@ public class Initializer implements ServletContextListener {
 //
         ////setting up products and printing it
         //productDataStore.add(new Product("Peti", new BigDecimal("250"), "USD", "_", personal, codeCool));
-        //productDataStore.add(new Product("Saz", new BigDecimal("150"), "EUR", "_", personal, codeCool));
+        //productDataStore.add(new Product("Saz", new BigDecimal("150"), "USD", "_", personal, codeCool));
         //productDataStore.add(new Product("Mate", new BigDecimal("100"), "USD", "_", personal, codeCool));
         //productDataStore.add(new Product("Ichy", new BigDecimal("100"), "USD", " ", personal, codeCool));
-        //productDataStore.add(new Product("Balazs", new BigDecimal("250"), "HUF", " ", personal, codeCool));
-        //productDataStore.add(new Product("Martin", new BigDecimal("5"), "EUR", " ", personal, greenFox));
+        //productDataStore.add(new Product("Balazs", new BigDecimal("250"), "USD", " ", personal, codeCool));
+        //productDataStore.add(new Product("Martin", new BigDecimal("5"), "USD", " ", personal, greenFox));
         //productDataStore.add(new Product("Eric Cartman", new BigDecimal("300"), "USD", " ", personal, greenFox));
         //productDataStore.add(new Product("Kenny McCormick", new BigDecimal("10"), "USD", " ", personal, greenFox));
-        //productDataStore.add(new Product("ProgramING shop", new BigDecimal("800"), "EUR", " ", team, codeCool));
-        //productDataStore.add(new Product("No IDEa", new BigDecimal("500"), "HUF", " ", team, greenFox));
+        //productDataStore.add(new Product("ProgramING shop", new BigDecimal("800"), "USD", " ", team, codeCool));
+        //productDataStore.add(new Product("No IDEa", new BigDecimal("500"), "USD", " ", team, greenFox));
 //
         //FileHandler fileHandler = new FileHandler();
         //fileHandler.saveFile(fileHandler.exportSupplierDao(), fileHandler.getSupplierFile());

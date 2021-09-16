@@ -20,7 +20,7 @@
     },
     {
       "defaultPrice": 150,
-      "defaultCurrency": "EUR",
+      "defaultCurrency": "USD",
       "productCategory": {
         "department": "Programming",
         "id": 1,
@@ -74,7 +74,7 @@
     },
     {
       "defaultPrice": 250,
-      "defaultCurrency": "HUF",
+      "defaultCurrency": "USD",
       "productCategory": {
         "department": "Programming",
         "id": 1,
@@ -92,7 +92,7 @@
     },
     {
       "defaultPrice": 5,
-      "defaultCurrency": "EUR",
+      "defaultCurrency": "USD",
       "productCategory": {
         "department": "Programming",
         "id": 1,
@@ -146,7 +146,7 @@
     },
     {
       "defaultPrice": 800,
-      "defaultCurrency": "EUR",
+      "defaultCurrency": "USD",
       "productCategory": {
         "department": "Project building",
         "id": 2,
@@ -164,7 +164,7 @@
     },
     {
       "defaultPrice": 500,
-      "defaultCurrency": "HUF",
+      "defaultCurrency": "USD",
       "productCategory": {
         "department": "Project building",
         "id": 2,
