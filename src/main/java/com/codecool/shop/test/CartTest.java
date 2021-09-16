@@ -31,13 +31,30 @@ class CartTest {
         assertNotEquals(numberOfItemInCar,cartContent.size());
     }
 
+    @Test
+    void increaseQuantityTest(){
+        cart.addToCart(product);
+        int cartSizeBefore = cartContent.get(product);
+        cart.addToCart(product);
+        assertNotEquals(cartSizeBefore,cartContent.get(product));
+    }
+
 
     @Test
-    void removeFromExistingProductFromCart() {
+    void removeFromExistingProductFromCartTest() {
         cart.addToCart(product);
         int cartSizeBefore = cartContent.size();
         cart.removeFromCart(product);
         assertNotEquals(cartSizeBefore,cartContent.size());
 
     }
+    @Test
+    void decreaseQuantityFromExistingProductTest(){
+        cart.addToCart(product);
+        cart.addToCart(product);
+        int cartItemQuantityBefore= cartContent.get(product);
+        cart.removeFromCart(product);
+        assertNotEquals(cartItemQuantityBefore,cartContent.get(product));
+    }
+
 }
