@@ -5,19 +5,26 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+import com.codecool.shop.manager.CodecoolShopDbManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Parameters {
+
+    private static final Logger logger = LoggerFactory.getLogger(Parameters.class);
 
     public static Properties init(){
         Properties prop = new Properties();
         String fileName = "src/main/resources/connection.properties";
 
         try (FileInputStream fis = new FileInputStream(fileName)) {
+            logger.info("Loading config file...");
             prop.load(fis);
         } catch (FileNotFoundException ex) {
-            System.out.println("file not found");
+            logger.error("Config file not found!");
             return null;
         } catch (IOException ex) {
-            System.out.println("Exception " + ex);
+            logger.error("Exception " + ex);
             return null;
 
         }

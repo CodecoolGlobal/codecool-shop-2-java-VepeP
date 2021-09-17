@@ -3,6 +3,7 @@ package com.codecool.shop.dao.implementation;
 
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
+import com.codecool.shop.manager.CodecoolShopDbManager;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
@@ -17,8 +18,11 @@ import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ProductDaoJdbc implements ProductDao {
+    private static final Logger logger = LoggerFactory.getLogger(ProductDaoJdbc.class);
     private final DataSource dataSource;
 
     public ProductDaoJdbc(DataSource dataSource) {
@@ -40,7 +44,8 @@ public class ProductDaoJdbc implements ProductDao {
             st.setString(7, product.getDescription());
             st.executeUpdate();
         } catch (SQLException throwable) {
-            throw new RuntimeException("Error while adding new product.", throwable);
+            logger.error("Error while adding new product.");
+            throw new RuntimeException(throwable);
         }
     }
 
@@ -65,7 +70,8 @@ public class ProductDaoJdbc implements ProductDao {
 
             return product;
         } catch (SQLException e) {
-            throw new RuntimeException("Error while reading product with id: " + id, e);
+            logger.error("Error while reading product with id: " + id);
+            throw new RuntimeException(e);
         }
     }
 
@@ -77,7 +83,8 @@ public class ProductDaoJdbc implements ProductDao {
             st.setInt(1, id);
             st.executeUpdate();
         } catch (SQLException throwable) {
-            throw new RuntimeException("Error while deleting product with id: " + id, throwable);
+            logger.error("Error while deleting product with id: " + id);
+            throw new RuntimeException(throwable);
         }
     }
 
@@ -101,7 +108,8 @@ public class ProductDaoJdbc implements ProductDao {
             }
             return result;
         } catch (SQLException e) {
-            throw new RuntimeException("Error while reading all categories", e);
+            logger.error("Error while reading all categories");
+            throw new RuntimeException(e);
         }
     }
 
@@ -127,7 +135,8 @@ public class ProductDaoJdbc implements ProductDao {
             }
             return result;
         } catch (SQLException e) {
-            throw new RuntimeException("Error while reading all categories", e);
+            logger.error("Error while reading all categories");
+            throw new RuntimeException(e);
         }
     }
 
@@ -153,7 +162,8 @@ public class ProductDaoJdbc implements ProductDao {
             }
             return result;
         } catch (SQLException e) {
-            throw new RuntimeException("Error while reading all categories", e);
+            logger.error("Error while reading all categories");
+            throw new RuntimeException(e);
         }
     }
 }

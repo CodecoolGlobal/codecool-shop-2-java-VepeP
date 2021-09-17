@@ -1,6 +1,7 @@
 package com.codecool.shop.dao.implementation;
 
 import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.manager.CodecoolShopDbManager;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 
@@ -11,8 +12,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SupplierDaoJdbc implements SupplierDao {
+    private static final Logger logger = LoggerFactory.getLogger(SupplierDaoJdbc.class);
 
     private final DataSource dataSource;
 
@@ -29,7 +33,8 @@ public class SupplierDaoJdbc implements SupplierDao {
             st.setString(2, supplier.getDescription());
             st.executeUpdate();
         } catch (SQLException throwable) {
-            throw new RuntimeException("Error while adding new supplier.", throwable);
+            logger.error("Error while adding new supplier.");
+            throw new RuntimeException(throwable);
         }
     }
 
@@ -48,7 +53,8 @@ public class SupplierDaoJdbc implements SupplierDao {
 
             return supplier;
         } catch (SQLException e) {
-            throw new RuntimeException("Error while reading supplier with id: " + id, e);
+            logger.error("Error while reading supplier with id: " + id);
+            throw new RuntimeException(e);
         }
     }
 
@@ -60,7 +66,8 @@ public class SupplierDaoJdbc implements SupplierDao {
             st.setInt(1, id);
             st.executeUpdate();
         } catch (SQLException throwable) {
-            throw new RuntimeException("Error while deleting supplier with id: " + id, throwable);
+            logger.error("Error while deleting supplier with id: " + id);
+            throw new RuntimeException(throwable);
         }
     }
 
@@ -78,7 +85,8 @@ public class SupplierDaoJdbc implements SupplierDao {
             }
             return result;
         } catch (SQLException e) {
-            throw new RuntimeException("Error while reading all suppliers", e);
+            logger.error("Error while reading all suppliers");
+            throw new RuntimeException(e);
         }
     }
 }

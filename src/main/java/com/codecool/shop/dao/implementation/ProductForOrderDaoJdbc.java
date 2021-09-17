@@ -2,6 +2,7 @@ package com.codecool.shop.dao.implementation;
 
 import com.codecool.shop.dao.OrderDao;
 import com.codecool.shop.dao.ProductForOrderDao;
+import com.codecool.shop.manager.CodecoolShopDbManager;
 import com.codecool.shop.model.Order;
 import com.codecool.shop.model.Product;
 
@@ -10,8 +11,11 @@ import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ProductForOrderDaoJdbc implements ProductForOrderDao {
+    private static final Logger logger = LoggerFactory.getLogger(ProductForOrderDaoJdbc.class);
     private final DataSource dataSource;
 
     public ProductForOrderDaoJdbc(DataSource dataSource) {
@@ -38,7 +42,8 @@ public class ProductForOrderDaoJdbc implements ProductForOrderDao {
 
             return products;
         } catch (SQLException e) {
-            throw new RuntimeException("Error while reading supplier with id: " + orderID, e);
+            logger.error("Error while reading supplier with id: " + orderID);
+            throw new RuntimeException(e);
         }
     }
 }

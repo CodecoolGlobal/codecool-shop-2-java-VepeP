@@ -1,6 +1,7 @@
 package com.codecool.shop.dao.implementation;
 
 import com.codecool.shop.dao.ProductCategoryDao;
+import com.codecool.shop.manager.CodecoolShopDbManager;
 import com.codecool.shop.model.ProductCategory;
 
 import javax.sql.DataSource;
@@ -10,8 +11,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ProductCategoryDaoJdbc implements ProductCategoryDao {
+    private static final Logger logger = LoggerFactory.getLogger(ProductCategoryDaoJdbc.class);
     private final DataSource dataSource;
 
     public ProductCategoryDaoJdbc(DataSource dataSource) {
@@ -28,7 +32,8 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
             st.setString(3, category.getDescription());
             st.executeUpdate();
         } catch (SQLException throwable) {
-            throw new RuntimeException("Error while adding new category.", throwable);
+            logger.error("Error while adding new category.");
+            throw new RuntimeException(throwable);
         }
     }
 
@@ -48,7 +53,8 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
 
             return productCategory;
         } catch (SQLException e) {
-            throw new RuntimeException("Error while reading category with id: " + id, e);
+            logger.error("Error while reading category with id: " + id);
+            throw new RuntimeException(e);
         }
     }
 
@@ -60,7 +66,8 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
             st.setInt(1, id);
             st.executeUpdate();
         } catch (SQLException throwable) {
-            throw new RuntimeException("Error while deleting category with id: " + id, throwable);
+            logger.error("Error while deleting category with id: " + id);
+            throw new RuntimeException(throwable);
         }
     }
 
@@ -79,7 +86,8 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
             }
             return result;
         } catch (SQLException e) {
-            throw new RuntimeException("Error while reading all categories", e);
+            logger.error("Error while reading all categories");
+            throw new RuntimeException(e);
         }
     }
 }

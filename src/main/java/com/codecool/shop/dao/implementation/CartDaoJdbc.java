@@ -1,6 +1,7 @@
 package com.codecool.shop.dao.implementation;
 
 import com.codecool.shop.dao.CartDao;
+import com.codecool.shop.manager.CodecoolShopDbManager;
 import com.codecool.shop.model.CartProduct;
 
 import javax.sql.DataSource;
@@ -9,8 +10,11 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CartDaoJdbc implements CartDao {
+    private static final Logger logger = LoggerFactory.getLogger(CartDaoJdbc.class);
     private final DataSource dataSource;
 
     public CartDaoJdbc(DataSource dataSource) {
@@ -26,7 +30,8 @@ public class CartDaoJdbc implements CartDao {
             st.setInt(2, 1);
             st.executeUpdate();
         } catch (SQLException throwable) {
-            throw new RuntimeException("Error while adding new product to shopping cart.", throwable);
+            logger.error("Error while adding new product to shopping cart.");
+            throw new RuntimeException(throwable);
         }
     }
 
@@ -39,7 +44,8 @@ public class CartDaoJdbc implements CartDao {
             st.setInt(2, id);
             st.executeUpdate();
         } catch (SQLException throwable) {
-            throw new RuntimeException("Error while updating shopping cart.", throwable);
+            logger.error("Error while updating shopping cart.");
+            throw new RuntimeException(throwable);
         }
     }
 
@@ -59,7 +65,8 @@ public class CartDaoJdbc implements CartDao {
             }
             return result;
         } catch (SQLException e) {
-            throw new RuntimeException("Error while reading all products from shopping cart", e);
+            logger.error("Error while reading all products from shopping cart");
+            throw new RuntimeException(e);
         }
     }
 
@@ -71,7 +78,8 @@ public class CartDaoJdbc implements CartDao {
             st.setInt(1, id);
             st.executeUpdate();
         } catch (SQLException throwable) {
-            throw new RuntimeException("Error while deleting product from shopping cart.", throwable);
+            logger.error("Error while deleting product from shopping cart.");
+            throw new RuntimeException(throwable);
         }
     }
 
@@ -91,7 +99,8 @@ public class CartDaoJdbc implements CartDao {
             }
             return new BigDecimal(totalPrice);
         } catch (SQLException e) {
-            throw new RuntimeException("Error while getting total price of shopping cart", e);
+            logger.error("Error while getting total price of shopping cart");
+            throw new RuntimeException(e);
         }
     }
 
@@ -103,7 +112,8 @@ public class CartDaoJdbc implements CartDao {
             st.setInt(1, userID);
             st.executeUpdate();
         } catch (SQLException throwable) {
-            throw new RuntimeException("Error while deleting all product from shopping cart.", throwable);
+            logger.error("Error while deleting all product from shopping cart.");
+            throw new RuntimeException(throwable);
         }
     }
 
